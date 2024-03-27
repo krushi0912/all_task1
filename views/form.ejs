@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="/login.css">
+</head>
+
+<body>
+    <h4 style="text-align: center;">Krushi Patel || 24DEV079 || 20/3/2024</h4>
+    <form action="/register" method="post" name="form" id="form" onsubmit="return formvalidation()" style="margin-top: 40px;">
+        <h3 style="margin: 20px;">Registration Form</h3>
+        <label for="firstname">Firstname </label><br>
+        <input type="text" name="firstname" id="firstname"  ><br>
+        <span id="fname"></span><br><br>
+
+        <label for="lastname">Lastname </label><br>
+        <input type="text" name="lastname" id="lastname"><br>
+        <span id="lname"></span><br><br>
+
+        <label for="contact">Contact No. </label><br>
+        <input type="text" name="contact" id="contact"><br>
+        <span id="numbermsg"></span><br><br>
+
+        <label for="email">Email </label><br>
+        <input type="text" name="email" id="email"><br>
+        <span id="emailmsg"></span><br><br>
+
+        <input type="submit" value="Register" name="register" style="margin-bottom: 20px;">
+        <p>Already Registered? <a href="/login" style="font-size: 18px;">Login</a></p>
+    </form>
+    <div class="login">
+    </div>
+
+    <script>
+        function formvalidation() {
+            let input = document.getElementsByTagName("input");
+            valid = true;
+            for (let i = 0; i < 4; i++) {
+                const x = document.forms["form"][input[i].name];
+                if (x.name == "firstname") {
+                    fname = document.getElementById("fname");
+                    if (x.value == "") {
+                        fname.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^[a-z ,.'-]+$/i.test(x.value)) {
+                        fname.innerHTML = "Only Character!";
+                        valid = false;
+                    }
+                }
+                if (x.name == "lastname") {
+                    lname = document.getElementById("lname");
+                    if (x.value == "") {
+                        lname.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^[a-z ,.'-]+$/i.test(x.value)) {
+                        lname.innerHTML = "Only Character!";
+                        valid = false;
+                    }
+                }
+
+                if (x.name == "email") {
+                    emailmsg = document.getElementById("emailmsg");
+                    if (x.value == "") {
+                        emailmsg.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(x.value)) {
+                        emailmsg.innerHTML = "Enter Valid Email-id";
+                        valid = false;
+                    }
+                }
+
+                if (x.name == "contact") {
+                    numbermsg = document.getElementById("numbermsg");
+                    if (x.value == "") {
+                        numbermsg.innerHTML = "Requied!";
+                        valid = false;
+                    }
+                    else if (!/^\d{10}$/.test(x.value)) {
+                        numbermsg.innerHTML = "Enter 10 digits";
+                        valid = false;
+                    }
+                }
+            }
+            return valid;
+        }
+    </script>
+</body>
+
+</html>

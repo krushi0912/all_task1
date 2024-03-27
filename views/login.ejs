@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="/login.css">
+</head>
+
+<body>
+    <h4 style="text-align: center; margin: 10px;">Krushi Patel || 24DEV079 || 20/3/2024</h4>
+    <form action="/login" method="post" name="form" id="form" style=" margin-top: 70px;">
+        <h3 style="margin-top: 20px;">Login Here</h3><br>
+        <span id="loginerr"></span><br><br>
+        <label for="Email_id">Email-id </label><br>
+        <input type="text" name="Email_id" id="Email_id"><br><br>
+
+        <label for="password">Password </label><br>
+        <input type="password" name="password" id="password"><br><br>
+
+        <p style="margin-top: 20px;"> <a href="/verifyemail" style="color:rgb(247, 111, 111); font-size: 15px;">Forgot Password?</a></p>
+
+        <input type="button" value="login" name="Login" onclick="logindata()">
+        <p style="margin-top: 20px;">Create an account? <a href="/" style="font-size: 18px;">Register</a></p>
+    </form>
+
+    <div id="welcome">
+
+    </div>
+    <script>
+        async function logindata() {
+            let formdata = document.getElementById("form");
+            let data = new FormData(formdata);
+            const params = new URLSearchParams(data);
+            const jobdata = await new Response(params).text();
+            console.log(typeof (jobdata));
+
+            let data2 = await fetch("http://localhost:9013/login", {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/x-www-form-urlencoded'
+                },
+                body: jobdata
+            })
+            error = await data2.json();
+            console.log(error);
+            if (error.msg === "welcome!") {
+                window.location.assign("http://localhost:9013/home")
+                // document.getElementById("welcome").innerHTML = `<p>Go back to <a href="/home">Home</a> Page</p>` ;
+            } else {
+                document.getElementById("loginerr").innerHTML = error.msg;
+            }
+        }
+    </script>
+</body>
+
+</html>

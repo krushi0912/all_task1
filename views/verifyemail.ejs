@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forgot password</title>
+    <link rel="stylesheet" type="text/css" href="/login.css">
+</head>
+
+<body>
+    <form action="/verifyemail" method="post" name="form" id="form" onsubmit="return validation()" style="margin-top: 70px;">
+        <h3 style="margin-top: 20px;">Verify Email</h3><br>
+        <span id="loginerr"></span><br><br>
+        <label for="Email_id">Email-id </label><br>
+        <input type="text" name="Email_id" id="Email_id"><br>
+        <span id="emailmsg"></span><br><br>
+
+        <p id="link"></p>
+        <input type="submit" value="Get Link" name="getlink" style="margin-bottom: 20px;">
+    </form>
+
+    <script>
+        function validation() {
+            valid = true;
+            var x = document.getElementById("Email_id").value;
+            emailmsg = document.getElementById("emailmsg");
+            if (x == "") {
+                emailmsg.innerHTML = "Required!";
+                valid = false;
+            }
+            return valid;
+        }
+    </script>
+</body>
+
+</html>

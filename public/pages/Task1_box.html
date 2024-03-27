@@ -1,0 +1,141 @@
+<!-- increment decrement boxes with colors -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table task</title>
+    <style>
+        h3 {
+            text-align: center;
+        }
+
+        table {
+            border: 3px solid black;
+            margin: 10px 0 0 0px;
+            justify-content: center;
+            border-collapse: collapse;
+            margin: auto;
+            padding: 30px;
+        }
+
+        td {
+            border: 3px solid black;
+            height: 4rem;
+            width: 4rem;
+            text-align: center;
+        }
+
+        input {
+            height: 30px;
+            width: 30px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .column {
+            padding: 0 30px 0 0;
+        }
+        tr:nth-of-type(odd) td:nth-of-type(odd),tr:nth-of-type(even) td:nth-of-type(even){
+            background-color: pink;
+        }
+        tr:nth-of-type(odd) td:nth-of-type(even),tr:nth-of-type(even) td:nth-of-type(odd){
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Date : 01/02/2024</h3>
+    <h3>Krushi Patel</h3>
+    <div class="button">
+        <div class="column">
+            <label for="column-plus">Column</label>
+            <input type="button" id="column-plus" name="column-plus" value="+" onclick="columnplus()">
+            <input type="button" id="column-minus" name="column-minus" value="-" onclick="columnminus()">
+        </div>
+        <div class="row">
+            <label for="column-plus">Row</label>
+            <input type="button" id="row-plus" name="row-plus" value="+" onclick="rowplus()">
+            <input type="button" id="row-minus" name="row-minus" value="-" onclick="rowminus()">
+        </div>
+    </div><br><br><br>
+    <div class="box">
+        <table id="table">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        // using createelement and appendChild
+        function columnplus() {
+            let table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                tr[i].appendChild(document.createElement("td"));
+            }
+        }
+        function columnminus() {
+            let table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName("tr");
+            if ((tr.length >= 2 && tr[0].getElementsByTagName("td").length > 2)) {
+                for (i = 0; i < tr.length; i++) {
+                    tr[i].removeChild(tr[i].lastChild);
+                }
+            }
+        }
+
+
+        function rowplus() {
+            let table = document.getElementsByTagName("table");
+            let tr = table[0].getElementsByTagName("tr");
+            td = tr[0].getElementsByTagName("td");
+            table[0].appendChild(document.createElement("tr"));
+            for (i = 0; i < td.length; i++) {
+                table[0].lastChild.appendChild(document.createElement("td"));
+            }
+        }
+        function rowminus() {
+            let table = document.getElementsByTagName("table");
+            let tr = table[0].getElementsByTagName("tr");
+            td = tr[0].getElementsByTagName("td");
+            if (tr.length > 2) {
+                table[0].removeChild(table[0].lastChild);
+            }
+        }
+
+        // using insert row
+
+        /* function rowplus() {
+            let table = document.getElementsByTagName("table");
+            let tr = table[0].getElementsByTagName("tr");
+            td = tr[0].getElementsByTagName("td");
+            let row = table[0].insertRow();
+            for(i=0 ; i<td.length ; i++){
+                let column = row.insertCell(i);
+            }
+        }
+        function rowminus(){
+            let table = document.getElementsByTagName("table");
+            let tr = table[0].getElementsByTagName("tr");
+            document.getElementById('table').deleteRow(0);
+        }
+        */
+    </script>
+</body>
+
+</html>

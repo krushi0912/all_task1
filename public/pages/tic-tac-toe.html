@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-tac-toe game</title>
+    <style>
+        *{
+            background-color: rgb(183, 214, 214);
+        }
+        p,
+        h3 {
+            text-align: center;
+            font-size: 25px;
+        }
+        
+        table {
+            margin: auto;
+        }
+        
+        td {
+            background-color: cadetblue;
+            border: 2px solid black;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            height: 100px;
+            width: 100px;
+            font-size: 35px;
+        }
+
+        input {
+            text-align: center;
+            font-size: 17px;
+            margin: 30px 0 0 600px;
+            cursor: pointer;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Krushi Patel || Date : 02/02/2024</p>
+    <h3>Tic-Tac-Toe</h3>
+    <p id="win-msg"></p>
+    <table>
+        <tr>
+            <td class="box"></td>
+            <td class="box"></td>
+            <td class="box"></td>
+        </tr>
+        <tr>
+            <td class="box"></td>
+            <td class="box"></td>
+            <td class="box"></td>
+        </tr>
+        <tr>
+            <td class="box"></td>
+            <td class="box"></td>
+            <td class="box"></td>
+        </tr>
+    </table>
+    <input type="button" id="playagain" name="playagain" value="Play Again">
+    <script>
+        turn = "0";
+
+        table = document.getElementsByTagName("table");
+        td = table[0].getElementsByTagName("td");
+        boxes = document.querySelectorAll(".box");
+        for (let i = 0; i < td.length; i++) {
+            td[i].addEventListener("click", function () {
+                if (turn == "0") {
+                    if (!td[i].innerHTML) {
+                        td[i].innerHTML = "0";
+                        turn = "X";
+                        checkwinner("0");
+                    }
+                }
+                else {
+                    if (!td[i].innerHTML) {
+                        td[i].innerHTML = "X";
+                        turn = "0";
+                        checkwinner("X");
+                    }
+                }
+            })
+        }
+
+        function drawgame(){
+            document.getElementById("win-msg").innerHTML = `Game is draw!`;
+        }
+
+        function checkwinner(turn) {
+
+            if ((td[0].innerHTML === turn && td[1].innerHTML === turn && td[2].innerHTML === turn) ||
+                (td[3].innerHTML === turn && td[4].innerHTML === turn && td[5].innerHTML === turn) ||
+                (td[6].innerHTML === turn && td[7].innerHTML === turn && td[8].innerHTML === turn) ||
+                (td[0].innerHTML === turn && td[3].innerHTML === turn && td[6].innerHTML === turn) ||
+                (td[1].innerHTML === turn && td[4].innerHTML === turn && td[7].innerHTML === turn) ||
+                (td[2].innerHTML === turn && td[5].innerHTML === turn && td[8].innerHTML === turn) ||
+                (td[0].innerHTML === turn && td[4].innerHTML === turn && td[8].innerHTML === turn) ||
+                (td[2].innerHTML === turn && td[4].innerHTML === turn && td[6].innerHTML === turn)) {
+                if (turn == "0") {
+                    showdisplay("0");
+                }
+                else {
+                    showdisplay("X");
+                }
+            }else{
+                var check = false;
+                for(i=0 ; i<td.length;i++){
+                    if(!td[i].innerHTML){
+                        check = true;
+                    }
+                }
+                if(check == false){
+                    showdisplay("draw");
+                }
+            }
+        }
+
+        function showdisplay(value) {
+            if(value == "0"){
+                win = "WInner is : 0";
+            }
+            else if(value == "X"){
+                win = "Winner is : X";
+            }
+            else{
+                win = "Match draw!";
+            }
+            document.getElementsByTagName("body")[0].innerHTML = `<h2 style="margin: 300px 0 0 550px">${win} </h2>`
+            const button = document.createElement("button");
+            button.innerHTML = "Play Again";
+            button.style.fontSize = "20px"
+            button.style.margin = "15px 0 0 550px";
+            button.addEventListener("click", function () {
+                window.location.reload();
+            })
+            document.body.appendChild(button);
+        }
+
+        document.getElementById("playagain").addEventListener("click", function () {
+            window.location.reload();
+        })
+    </script>
+</body>
+
+</html>

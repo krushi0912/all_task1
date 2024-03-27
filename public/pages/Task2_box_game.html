@@ -1,0 +1,142 @@
+<!-- find diffrent block in boxes (KUKU cube game) -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box_Game</title>
+    <style>
+        *{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: cadetblue;
+        }
+        p,
+        h3 {
+            text-align: center;
+            font-size: 17px;
+        }
+
+        table {
+            /* border: 2px solid black; */
+            margin: auto;
+            height: 500px;
+            width: 500px;
+        }
+        
+        td {
+            border-radius: 5px;
+            border: 2px solid black;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #time {
+            text-align: end;
+        }
+    </style>
+</head>
+
+<body onload="mybox()">
+    <p>Krushi Patel || Date : 02/02/2024</p>
+    <h3>Score : <span id="score"></span></h3>
+    <h3 id="time">
+        <span id="count"></span>
+    </h3>
+    <table>
+        <tr >
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+
+        // time interval
+        var count = 60;
+        timer = setInterval(function(){
+            if(count <= 0){
+                clearInterval(timer);
+                document.getElementById("time").innerHTML = "finished";
+                document.getElementsByTagName("body")[0].innerHTML = `<h2 style="margin: 300px 0 0 500px"> Your Score is : ${value} </h2>`
+                const button = document.createElement("button");
+                button.innerHTML = "Play Again";
+                button.style.fontSize = "20px"
+                button.style.margin = "15px 0 0 550px";
+                button.addEventListener("click",function(){
+                    window.location.reload();
+                })
+                document.body.appendChild(button);
+            }
+            else{
+                document.getElementById("count").innerHTML =  count + " : Time" ;
+            }
+            count--;
+        },1000);
+
+        // random color of boxes
+        function random_color() {
+            red = Math.floor(Math.random() * (255  + 1));
+            green = Math.floor(Math.random() * (255 + 1));
+            blue = Math.floor(Math.random() * (255 + 1));
+            return { red, green, blue };
+        }
+
+        
+        function mybox() {
+            let table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName("tr");
+            td = table[0].getElementsByTagName("td");
+            // console.log(td.length);
+            let random_box = Math.floor(Math.random() * td.length);
+            // console.log(random_box);
+
+            var r = random_color().red;
+            var g = random_color().green;
+            var b = random_color().blue;
+
+
+            for (i = 0; i < td.length; i++) {
+                if (i === random_box) {
+                    td[i].style.backgroundColor = "rgba(" + r + "," + g + "," + b + ",0.8)";
+                } else {
+                    td[i].style.backgroundColor = "rgba(" + r + "," + g + "," + b + ")";
+                    td[i].removeEventListener("click", addrowcolumn);
+                }
+            }
+            td[random_box].addEventListener("click", addrowcolumn);
+        }
+
+        var value = 0;
+        function addrowcolumn() {
+            columnplus();
+            rowplus();
+            mybox();
+            value++;
+            document.getElementById("score").innerHTML = value;
+        }
+
+        function columnplus() {
+            let table = document.getElementsByTagName("table");
+            tr = table[0].getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                tr[i].appendChild(document.createElement("td"));
+            }
+        }
+        function rowplus() {
+            let table = document.getElementsByTagName("table");
+            let tr = table[0].getElementsByTagName("tr");
+            td = tr[0].getElementsByTagName("td");
+            table[0].appendChild(document.createElement("tr"));
+            for (i = 0; i < td.length; i++) {
+                table[0].lastChild.appendChild(document.createElement("td"));
+            }
+        }
+    </script>
+</body>
+
+</html>

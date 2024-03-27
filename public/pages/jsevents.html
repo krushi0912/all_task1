@@ -1,0 +1,169 @@
+<!-- event practices -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Events</title>
+    <style>
+        table {
+            border: 2px solid black;
+            margin: 50px 50px 50px 100px;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            height: 10rem;
+            width: 18rem;
+            text-align: center;
+        }
+
+        input {
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: white;
+        }
+
+        #fname {
+            width: 4rem;
+        }
+        
+    </style>
+
+</head>
+
+<body onscroll="alert('scorlling')">
+    <!-- <body onload="myload()" onresize="myresize()"> -->
+    <table>
+        <tr>
+            <td>
+                <input type="button" name="onclick" id="onclick" value="onclick" onclick="myfunctionclick()">
+            </td>
+            <td style="background-color:grey; color: white;">
+                <input type="button" name="dbclick" id="dbclick" value="double click" ondblclick="mydbclick()" style="background-color: grey;">
+            </td>
+            <td>
+                <input type="button" name="mouseover" id="mouseover" value="Mouse over" onmouseover="mymouseover()">
+            </td>
+            <td style="background-color:grey; color: white;">
+                <input type="button" name="mouseout" id="mouseout" value="Mouse Out" onmouseout="mymouseout()" style="background-color: grey;">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:grey; color: white;">
+                <input type="button" name="mousedown" id="mousedown" value="Mouse Down" onmousedown="mymousedown()" style="background-color: grey;">
+            </td>
+            <td>
+                <input type="button" name="mouseup" id="mouseup" value="Mouse up" onmouseup="mymouseup()">
+            </td>
+            <td style="background-color:grey; color: white;">
+                <input type="button" name="mousemove" id="mousemove" value="Mouse move" onmousemove="mymousemove()" style="background-color: grey;">
+            </td>
+
+            <td>
+                <input type="button" name="keydown" id="keydown" value="keydown" onkeydown="mykeydown()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" name="keyup" id="keyup" value="keyup" onkeyup="mykeyup()">
+            </td>
+            <td style="background-color:grey; color: white;">
+                <input type="text" name="fname" id="fname" placeholder="Focus" onfocus="myfocus()" style="background-color: grey;">
+            </td>
+            <td>
+                <form action="" onsubmit="mysubmit()">
+                    <input type="text" name="lname" id="lname" placeholder="Enter your name"><br><br>
+                    <input type="submit" name="submit" id="submit" value="submit">
+                </form>
+            </td>
+            <td style="background-color:grey; color: white;">
+                <label for="lname">Blur event</label><br><br>
+                <input type="text" name="lname" id="lname" placeholder="Enter your name" onblur="myblur()" style="background-color: grey;">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:grey; color: white;">
+                <label for="change">Change</label><br><br>
+                <input type="text" name="change" id="change" placeholder="Enter your name" onchange="mychange()" style="background-color: grey;">
+            </td>
+            <td>
+                <label for="fname">Input event</label>
+                <input type="text" name="fname" id="input" oninput="inputfuncation()">
+            </td>
+            <td style="background-color:grey; color: white;">
+                <input type="button" id="contextmenu" value="contextmenu" style="background-color: grey;">
+            </td>
+            <td>
+                <form action="">
+                    <label for="fname">Invalid event</label><br><br>
+                    <input type="text" name="fname" id="invalid"  placeholder="Name" oninvalid="invalidfunction()" required><br><br>
+                    <input type="button" id="submit" value="submit">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function invalidfunction(){
+            alert('must be fill!');
+        }
+        let x = document.getElementById("contextmenu");
+        x.addEventListener("contextmenu", (e) => { e.preventDefault() });
+
+        function myfunctionclick() {
+            alert("onclick trigger");
+        }
+        function mydbclick() {
+            alert("double click trigger");
+        }
+        function mymouseover() {
+            alert("Mouse Over trigger");
+        }
+        function mymouseout() {
+            alert("Mouse out trigger");
+        }
+        function mymousedown() {
+            alert("Mouse down trigger");
+        }
+        function mymouseup() {
+            alert("Mouse up trigger");
+        }
+        function mymousemove() {
+            alert("Mouse move trigger");
+        }
+        function mykeydown() {
+            alert("Key down trigger");
+        }
+        function mykeyup() {
+            alert("Key up trigger");
+        }
+        function myfocus() {
+            alert("Focus trigger");
+        }
+        function mysubmit() {
+            alert("form is submitted");
+        }
+        function myblur() {
+            alert("blur triggered");
+        }
+        function mychange() {
+            alert("change triggered");
+        }
+        function myload() {
+            alert("load triggered");
+        }
+        function myresize() {
+            alert("resize triggered");
+        }
+        function inputfuncation() {
+            let x = document.getElementById("input");
+            x.value = x.value.toUpperCase();
+        }
+    </script>
+</body>
+
+</html>
