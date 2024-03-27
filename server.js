@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const l = require('./src/routes/authentication');
 const con = require('./src/config/connect');
 const js = require('./src/routes/javascript');
+const pagination = require('./src/routes/pagination');
 
 var app = express();
 app.use(cookieParser())
@@ -17,5 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/",l);
 app.use("/jstask",js);
+app.use("/pagination",pagination);
 
 app.listen(9013);

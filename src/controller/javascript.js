@@ -1,10 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-const md5 = require('md5');
 const path = require('path');
-const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const con = require('../config/connect');
 
 var app = express();
 app.use(cookieParser())

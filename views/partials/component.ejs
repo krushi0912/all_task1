@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .container {
+            display: flex;
+            float: right;
+        }
+
+        .container i {
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid rgb(188, 185, 185);
+            border-radius: 10px;
+            margin: 5px;
+            background-color: rgb(221, 243, 250);
+            color: grey;
+        }
+
+        .page {
+            padding: 10px 14px;
+            margin: 5px;
+            border: 2px solid rgb(188, 185, 185);
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <form action="/?page=1" method="get">
+        <label for="select">Order_by : </label>
+        <select name="select" id="sort">
+            <option value="id">id</option>
+            <option value="firstname">Firstname</option>
+            <option value="lastname">lastname</option>
+            <option value="email">email</option>
+            <option value="city">city</option>
+            <option value="birth_date">birth_date</option>
+            <option value="created_at">created_at</option>
+        </select> <br><br>
+        <label for="sort">Order : </label>
+        asc <input type="radio" name="sort" value="asc">
+        desc <input type="radio" name="sort" value="desc">
+        <br><br>
+        <input type="submit" value="sort">
+    </form> -->
+
+    <div class="container">
+        <a href="?page=1&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
+                    class="fa-solid fa-angles-left"></i></a>
+        <a href="?page=<%=Number(p)-1 %>&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==1){%>onclick='return
+            false;'<%}%> ><i class="fa-solid fa-angle-left"></i></a>
+        <div class="page">
+            <%=p%>
+        </div>
+        <a href="?page=<%=Number(p)+1 %>&select=<%=order_by%>&sort=<%=order%>"
+            <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i class="fa-solid fa-angle-right"></i></a>
+        <a href="?page=248&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==lastpage){%>onclick='return false;'
+            <%}%>><i class="fa-solid fa-angles-right"></i></a>
+    </div>
+</body>
+
+</html>

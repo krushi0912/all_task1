@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list_data</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            /* margin: auto; */
+            width: 100%;
+        }
+
+        th {
+            background-color: rgb(106, 105, 105);
+            border: 2px solid black;
+            padding: 5px 12px;
+            font-size: 12px;
+            
+        }
+        
+        .sort {
+            display: flex;
+            flex-direction: column;
+            float: right;
+        }
+        
+        th a {
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            float: left;
+        }
+
+        .sort i {
+            font-size: 20px;
+            color: white;
+        }
+
+
+        td {
+            border: 2px solid black;
+            padding: 4px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(199, 245, 245);
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(228, 223, 223);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="component">
+        <%- include('./partials/component', {p,order_by,order}) %>
+            <p style="float: left;">=> <%=order_by%> is <%=order%> order</p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <a href="/?page=1&select=id&sort=<%= order_by === 'id' && order === 'asc'?'desc':'asc'%>"> ID</a>
+                    <div class="sort">
+                        <% if(order_by=='id' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='id' && order=='desc' ){%>
+                                    <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=firstname&sort=<%= order_by === 'firstname' && order === 'asc'?'desc':'asc'%>">Firstname</a>
+                    <div class="sort">
+                        <% if(order_by=='firstname' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='firstname' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=lastname&sort=<%= order_by === 'lastname' && order === 'asc'?'desc':'asc'%>">Last Name</a>
+                    <div class="sort">
+                        <% if(order_by=='lastname' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='lastname' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=email&sort=<%= order_by === 'email' && order === 'asc'?'desc':'asc'%>">Email-id</a>
+                    <div class="sort">
+                        <% if(order_by=='email' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='email' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=gender&sort=<%= order_by === 'gender' && order === 'asc'?'desc':'asc'%>">Gender</a>
+                    <div class="sort">
+                        <% if(order_by=='gender' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='gender' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=address&sort=<%= order_by === 'address' && order === 'asc'?'desc':'asc'%>">Address</a>
+                    <div class="sort">
+                        <% if(order_by=='address' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='address' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=city&sort=<%= order_by === 'city' && order === 'asc'?'desc':'asc'%>">City</a>
+                    <div class="sort">
+                        <% if(order_by=='city' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='city' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=country&sort=<%= order_by === 'country' && order === 'asc'?'desc':'asc'%>">Country</a>
+                    <div class="sort">
+                        <% if(order_by=='country' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='country' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th>
+                    <a href="/?page=1&select=pincode&sort=<%= order_by === 'pincode' && order === 'asc'?'desc':'asc'%>">Pincode</a>
+                    <div class="sort">
+                        <% if(order_by=='pincode' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='pincode' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th class="date">
+                    <a href="/?page=1&select=birth_date&sort=<%= order_by === 'birth_date' && order === 'asc'?'desc':'asc'%>">Birth_Date</a>
+                    <div class="sort">
+                        <% if(order_by=='birth_date' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='birth_date' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+                <th class="date">
+                    <a href="/?page=1&select=created_at&sort=<%= order_by === 'created_at' && order === 'asc'?'desc':'asc'%>">Created_at</a>
+                    <div class="sort">
+                        <% if(order_by=='created_at' && order=='asc' ){%>
+                            <i class="fa-solid fa-angle-up"></i>
+                        <%}%>
+                        <% if(order_by=='created_at' && order=='desc' ){%>
+                            <i class="fa-solid fa-angle-down"></i>
+                        <%}%>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(i=0 ; i<result.length ; i++){ %>
+                <tr>
+                    <td>
+                        <%= result[i].id%>
+                    </td>
+                    <td>
+                        <%= result[i].firstname%>
+                    </td>
+                    <td>
+                        <%= result[i].lastname%>
+                    </td>
+                    <td>
+                        <%= result[i].email%>
+                    </td>
+                    <td>
+                        <%= result[i].gender%>
+                    </td>
+                    <td>
+                        <%= result[i].address%>
+                    </td>
+                    <td>
+                        <%= result[i].city%>
+                    </td>
+                    <td>
+                        <%= result[i].country%>
+                    </td>
+                    <td>
+                        <%= result[i].pincode%>
+                    </td>
+                    <td>
+                        <%= result[i].birth_date%>
+                    </td>
+                    <td>
+                        <%= result[i].created_at%>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>
