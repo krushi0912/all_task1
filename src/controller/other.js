@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const con = require('../config/connect');
 
 var app = express();
 app.use(cookieParser())
@@ -26,6 +27,38 @@ const fetchuser = async (req, res) => {
     }
 }
 
-module.exports = {fetchdata,fetchuser};
+const state_city = async (req,res)=>{
+    try{
+        res.render("state_city_list");
+    }catch(err){
+        res.send(err);
+    }
+}
+const statedata = async (req,res)=>{
+    try{
+        sql = `select * from state`;
+        data = await con.promise().query(sql);
+        result = data[0];
+        // console.log(result);
+        // res.render("list",{result});
+        res.send(result);
+    }catch(err){
+        res.send(err);
+    }
+}
+
+const citydata = async(req,res)=>{
+    try{
+        sql1 = `select * from city where state_id = ${req.params.state}`;
+        // console.log(req.params.id);
+        data = await con.promise().query(sql1);
+        result2 = data[0];
+        res.send(result2);
+    }catch(err){
+        res.send(err);
+    }
+}
+
+module.exports = {fetchdata,fetchuser,state_city,statedata,citydata};
 
 
