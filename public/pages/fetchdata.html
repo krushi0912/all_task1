@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{
+            text-align: center;
+            font-size: 16px;
+        }
+        table{
+            border: 2px solid black;
+            border-collapse: collapse;
+            height: 85vh;
+        }
+        th,td{
+            border: 2px solid black;
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 12px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            background-color: rgb(76, 80, 89);
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+        .page{
+            display: flex;
+            justify-content: center;
+        }
+        input{
+            background-color: rgb(46, 43, 43);
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body onload="fetchdata()">
+    <h2>Krushi Patel || 11/03/2024</h2>
+    <table>
+
+    </table>
+    <div class="page">
+        <input type="button" value="<" onclick="prev()">
+        <p id="pageno" style="margin-top:20px;">1</p>
+        <input type="button" value=">" onclick="next()">
+    </div>
+
+    <script>
+        var page = 10;
+        var max = 0;
+        const url = "https://jsonplaceholder.typicode.com/posts";
+
+        const fetchdata = async () => {
+            let data = "";
+            await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then((res) => {
+                result = res.json();
+                return result;
+            }).then((value) => {
+                // console.log(value);
+                data = value;
+                max = value.length;
+                return value;
+            })
+            table = document.getElementsByTagName("table")[0];
+            table.innerHTML = `
+            <tr>
+                <th>UserId</th>
+                <th>id</th>
+                <th>Title</th>
+                <th>body</th>
+                <th>Details</th>
+            </tr>`
+            data.slice(page-10,page).map((element)=>{
+                table.innerHTML += `
+                <tr>
+                    <td>${element.userId}</td>
+                    <td>${element.id}</td>
+                    <td>${element.title}</td>
+                    <td>${element.body}</td>
+                    <td><a href="/other/fetchdata/${element.id}">Details</a></td>
+                </tr>`
+            })
+        }
+        pageno = document.getElementById("pageno");
+        const prev = () =>{
+            if(page != 10){
+                page -= 10;
+                p = page/10;
+                pageno.innerHTML = p;
+                fetchdata();
+            }
+        }
+        const next = () =>{
+            if(page != max){
+                page += 10;
+                p = page/10;
+                pageno.innerHTML = p;
+                fetchdata();
+            }
+        }
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .user{
+            /* border: 2px solid black; */
+            padding: 20px;
+            width: 500px;
+            margin: auto;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+        input{
+            background-color: rgb(46, 43, 43);
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+        }
+        #comments{
+            display:flex;
+        }
+        .cards{
+            width: calc(100%/5);
+            border: 2px solid black;
+            border-radius: 10px;
+            margin-left: 15px;
+            padding: 15px;
+            font-size: 13px;
+            background-color: rgb(249, 234, 237);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="user">
+    </div>
+    <div id="comments">
+        
+    </div>
+    <script>
+        
+        const fetchuser = async () => {
+            let id = window.location.href.split("/").pop();
+            console.log(id);
+            const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+            let data = "";
+            await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then((res) => {
+                result = res.json();
+                return result;
+            }).then((value) => {
+                // console.log(value);
+                data = value;
+                return value;
+            })
+
+            printdata = document.getElementsByClassName("user")[0];
+            printdata.innerHTML = `
+            <b>UserId</b> : ${data.userId}<br>
+            <b>Id</b> : ${data.id}<br><br>
+            <b>Title</b> : ${data.title}<br><br>
+            <b>Body</b> : ${data.body}<br><br>
+            <input type="button" value="Comments" onclick="fetchcomments()">
+            `;
+        }
+
+        const fetchcomments = async () =>{
+            let id = window.location.href.split("/").pop();
+            console.log(id);
+            const url = `https://jsonplaceholder.typicode.com/posts/${id}/comments`;
+            let data = "";
+            await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then((res) => {
+                result = res.json();
+                return result;
+            }).then((value) => {
+                // console.log(value);
+                data = value;
+                return value;
+            })
+            comments = document.getElementById("comments");
+            data.map((element)=>{
+                comments.innerHTML += `
+                <div class="cards">
+                    <p><b>Name :</b> <br> ${element.name}</p>
+                    <p><b>Email :</b><br> ${element.email}</p>
+                    <p>${element.body}</p>
+                </div>`;
+            })
+            
+        }
+        const mainfunction = async () =>{
+            await fetchuser();
+        }
+        mainfunction();
+    </script>
+</body>
+
+</html>
