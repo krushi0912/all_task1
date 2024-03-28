@@ -46,4 +46,4 @@ const sorting = async (req,res)=>{
         res.send(err);
     }
 }
-module.exports = {dynamic,kukucube,tic,events}
+module.exports = {dynamic,kukucube,tic,events,sorting}
