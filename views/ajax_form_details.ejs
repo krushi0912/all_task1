@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .details {
+            /* border: 2px solid black; */
+            margin: auto;
+            text-align: center;
+        }
+        table{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 2px solid black;
+            padding: 12px;
+            text-align: center;
+        }
+        input[type="button"]{
+            padding: 6px 15px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Update</th>
+        </tr>
+        <%for(let i=0 ;i<result.length ; i++){%>
+            <tr>
+                <td>
+                    <%=result[i].First_name + " " + result[i].Last_name%>
+                </td>
+                <td>
+                    <%=result[i].Designation%>
+                </td>
+                <td>
+                    <%=result[i].Phone_number%>
+                </td>
+                <td>
+                    <%=result[i].Email%>
+                </td>
+                <td>
+                    <%=result[i].Address_1 + " " + result[i].Address_2%>
+                </td>
+                <td>
+                    <%=result[i].City%>
+                </td>
+                <td>
+                    <a href="/ajax_crud/listdata/<%=result[i].Employee_id%>"><input type="button" value="Update"></a>
+                </td>
+            </tr>
+            <%}%>
+    </table>
+
+</body>
+
+</html>

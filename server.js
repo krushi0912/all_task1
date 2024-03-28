@@ -10,6 +10,7 @@ const js = require('./src/routes/route_javascript');
 const pagination = require('./src/routes/route_pagination');
 const search = require('./src/routes/route_searching');
 const crud = require('./src/routes/route_CRUD');
+const ajax_crud = require('./src/routes/route_ajaxcrud');
 
 var app = express();
 app.use(cookieParser())
@@ -23,5 +24,6 @@ app.use("/jstask",js);
 app.use("/pagination",pagination);
 app.use("/search",search);
 app.use("/crud",crud);
+app.use("/ajax_crud",ajax_crud);
 
 app.listen(9013);

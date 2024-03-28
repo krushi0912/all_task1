@@ -1,0 +1,881 @@
+<!-- job-application-form using tables -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job_Application_form</title>
+    <style>
+        * {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            text-decoration: underline;
+            font-size: 18px;
+            margin: 10px 0 30px 20px;
+        }
+
+        .basicdetails {
+            border: 2px groove black;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .education {
+            border: 1px groove black;
+            padding: 10px;
+            position: relative;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .education .ssc {
+            padding: 20px;
+        }
+
+        .workexperience {
+            border: 1px groove black;
+            padding: 10px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .languages {
+            border: 2px groove black;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .technologies {
+            border: 2px groove black;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .reference {
+            border: 2px groove black;
+            padding: 30px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .preference {
+            border: 2px groove black;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        /* #submit {
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 15px;
+            margin: 18px;
+            padding: 7px;
+            margin-left: 500px;
+        }
+
+        #reset {
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 15px;
+            padding: 7px;
+        } */
+
+        span {
+            color: red;
+            font-size: 10px;
+        }
+
+        p {
+            color: red;
+            font-size: 13px;
+        }
+
+        #minus {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: rgb(46, 48, 48);
+            padding: 0 7px;
+            color: white;
+            font-size: 20px;
+        }
+
+        #plus {
+            position: absolute;
+            right: 45px;
+            top: 10px;
+            background-color: rgb(46, 48, 48);
+            padding: 0 6px;
+            color: white;
+            font-size: 20px;
+        }
+
+        select {
+            font-size: 15px;
+            background-color: rgb(227, 221, 221);
+            border-radius: 5px;
+        }
+
+        .tab {
+            display: none;
+            width: 80%;
+            margin: auto;
+        }
+
+        input[type="button"],
+        input[type="submit"] {
+            padding: 9px;
+            font-size: 15px;
+            margin: 10px;
+        }
+
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 20px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.8;
+        }
+
+        .step.active {
+            opacity: 1;
+            background-color: rgb(62, 60, 60);
+        }
+        #msg{
+            background-color: lightgreen;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="regForm" action="/ajax_submit" method="post" name="form" onsubmit="return validateform()">
+
+        <h2>Job Application Form</h2>
+
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab basicdetails">
+            <h3>Basic Details</h3>
+            <label for="firstname">First Name :</label>
+            <input type="text" name="firstname" id="firstname" value="<%=result.First_name%>">
+            <span id="fname"></span>
+
+            <label for="lastname" style="margin-left: 50px;">Last Name :</label>
+            <input type="text" name="lastname" id="lastname" value="<%=result.Last_name%>">
+            <span id="lname"></span> <br> <br>
+
+            <label for="designation">Designation : </label>
+            <input type="text" name="designation" id="designation" value="<%=result.Designation%>">
+            <span id="desmsg"></span><br><br>
+
+            <label for="email">Email :</label>
+            <input type="text" name="email" id="email" value="<%=result.Email%>">
+            <span id="emailmsg"></span>
+
+            <label for="address1" style="margin-left: 110px;">Address 1 :</label>
+            <input type="text" name="address1" id="address1" value="<%=result.Address_1%>">
+            <span class="addmsg"></span><br><br>
+
+            <label for="phonenumber">Phone Number :</label>
+            <input type="text" name="phonenumber" id="phonenumber" value="<%=result.Phone_number%>">
+            <span id="numbermsg"></span>
+
+            <label for="address2" style="margin-left: 40px;">Address 2 :</label>
+            <input type="text" name="address2" id="address2" value="<%=result.Address_2%>">
+            <span class="addmsg"></span><br><br>
+
+            <label for="gender">Gender : </label>
+            <input type="radio" id="male" name="gender" value="male" <%=result.Gender===1? 'checked' :''%>>
+            <label for="male">male</label>
+            <input type="radio" id="female" name="gender" value="female" <%=result.Gender===2? 'checked' :''%>>
+            <label for="female">female</label>
+            <span class="gender"></span>
+
+            <label for="city" style="margin-left: 115px;">City : </label>
+            <input type="text" name="city" id="city" value="<%=result.City%>">
+            <span id="citymsg"></span><br><br>
+
+            <label for="Relationshipstatus"> Relationship status </label>
+            <select name="Relationshipstatus" id="Relationshipstatus">
+                <option value="single" <%=result.Relationship===18? 'selected' :''%>>Single</option>
+                <option value="married" <%=result.Relationship===19? 'selected' :''%>>Married</option>
+            </select>
+
+            <label for="state" style="margin-left: 110px;">State :</label>
+            <input type="text" name="state" id="state" value="<%=result.State%>">
+            <span id="statemsg"></span><br><br>
+
+            <label for="dob">Date of Birth : </label>
+            <input type="text" name="dob" id="dob"
+                value="<%=(result && result.Date_of_Birth) ? JSON.stringify(result.Date_of_Birth).slice(1,11) : ' ' %>">
+            <span class="dobmsg"></span>
+
+            <label for="zipcode" style="margin-left: 60px;">Zipcode :</label>
+            <input type="text" name="zipcode" id="zipcode" value="<%=result.Zip_code%>">
+            <span id="zipmsg"></span>
+        </div>
+
+        <div class="tab education">
+            <h3>Education details</h3>
+            <div class="edu">
+                <%for(let i=0;i<result2.length;i++){%>
+                    <input type="hidden" name="edu_type[]" value="<%=result2[i].id%>">
+                    <div class="ssc" style="margin-bottom: 20px;">
+                        <label for="sscboard" style="margin-left: 40px;">Cource </label>
+                        <select name="cource[]">
+                            <option value="ssc" <%=result2[i].cource==="ssc" ? 'selected' :''%>>SSC</option>
+                            <option value="hsc" <%=result2[i].cource==="hsc" ? 'selected' :''%>>HSC</option>
+                            <option value="Degree" <%=result2[i].cource==="Degree" ? 'selected' :''%>>Degree</option>
+                            <option value="master" <%=result2[i].cource==="Master" ? 'selected' :''%>>Master</option>
+                        </select>
+                        <label for="board" style="margin-left: 40px;">Board/University</label>
+                        <input type="text" name="board[]" id="board" value="<%=result2[i].board%>"><br><br>
+                        <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
+                        <input type="text" name="passingyear[]" id="passingyear" value="<%=result2[i].passing_year%>">
+                        <label for="percentage" style="margin-left: 40px;">Percentage </label>
+                        <input type="text" name="percentage[]" id="percentage" value="<%=result2[i].percentage%>">
+                        <span id="educ"></span>
+                    </div>
+                    <%}%>
+            </div>
+            <input type="button" value="-" id="minus" onclick="minus_edu()" name="minus">
+            <input type="button" value="+" id="plus" onclick="plus_edu()" name="plus">
+        </div>
+
+        <div class="tab workexperience">
+            <h3>Work Experience</h3><br>
+            <div class="row1">
+                <%for(i=0;i<result3.length;i++){%>
+                    <div class="experience">
+                        <input type="hidden" name="work_id[]" value="<%=result3[i].id%>">
+                        <label for="companyname" style="margin-left: 50px;">Company name </label>
+                        <input type="text" name="companyname[]" id="companyname" value="<%=result3[i].company_name%>">
+                        <label for="work_designation" style="margin-left: 50px;">Designation </label>
+                        <input type="text" name="work_designation[]" id="work_designation"
+                            value="<%=result3[i].designation%>"> <br><br>
+                        <label for="fromdate" style="margin-left: 50px;">From </label>
+                        <input type="text" name="fromdate[]" id="fromdate"
+                            value="<%=(result3[i] && result3[i].from_date) ? JSON.stringify(result3[i].from_date).slice(1,11) : ' ' %>">
+                        <label for="todate" style="margin-left: 50px;">To </label>
+                        <input type="text" name="todate[]" id="todate"
+                            value="<%=(result3[i] && result3[i].to_date) ? JSON.stringify(result3[i].to_date).slice(1,11) : ' ' %>">
+                        <span id="workmsg"></span>
+                        <br><br><br>
+                    </div>
+                    <%}%>
+            </div>
+            <input type="button" value="-" id="minus" onclick="minus_work()" name="minus">
+            <input type="button" value="+" id="plus" onclick="plus_work()" name="plus">
+        </div>
+
+        <div class="tab languages">
+            <h3>Languages You known</h3>
+            <table>
+                <tr>
+                    <td><input type="hidden" name="lang_id[]" value="<%=hindi.length!=0 && hindi[0].id%>"></td>
+                    <td><input type="checkbox" name="hindi" id="hindi" <%=hindi.length!=0 && hindi[0].languages===8
+                            ?'checked' : '' %>><label for="hindi">Hindi</label></td>
+                    <td><input type="checkbox" name="h_r" id="h_r" style="margin-left: 30px;" <%=hindi.length!=0 &&
+                            hindi[0].r===1 ? 'checked' : '' %>><label for="h_r">read</label></td>
+                    <td><input type="checkbox" name="h_w" id="h_w" style="margin-left: 30px;" <%=hindi.length!=0 &&
+                            hindi[0].w===1 ? 'checked' : '' %>><label for="h_w">write</label></td>
+                    <td><input type="checkbox" name="h_s" id="h_s" style="margin-left: 30px;" <%=hindi.length!=0 &&
+                            hindi[0].s===1 ? 'checked' : '' %>><label for="h_s">speak</label></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="lang_id[]" value="<%=english.length!=0 && english[0].id%>"></td>
+                    <td><input type="checkbox" name="english" id="english" <%=english.length!=0 &&
+                            english[0].languages===9 ? 'checked' : '' %>><label for="english">English</label></td>
+                    <td><input type="checkbox" name="e_r" id="e_r" style="margin-left: 30px;" <%=english.length!=0 &&
+                            english[0].r===1 ? 'checked' : '' %>><label for="e_r">read</label></td>
+                    <td><input type="checkbox" name="e_w" id="e_w" style="margin-left: 30px;" <%=english.length!=0 &&
+                            english[0].w===1 ? 'checked' : '' %>><label for="e_w">write</label></td>
+                    <td><input type="checkbox" name="e_s" id="e_s" style="margin-left: 30px;" <%=english.length!=0 &&
+                            english[0].s===1 ? 'checked' : '' %>><label for="e_s">speak</label></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="lang_id[]" value="<%=gujarati.length!=0 && gujarati[0].id%>"></td>
+                    <td><input type="checkbox" name="gujarati" id="gujarati" <%=gujarati.length!=0 &&
+                            gujarati[0].languages===10 ? 'checked' : '' %>><label for="gujarati">Gujarati</label>
+                    </td>
+                    <td><input type="checkbox" name="g_r" id="g_r" style="margin-left: 30px;" <%=gujarati.length!=0 &&
+                            gujarati[0].r===1 ? 'checked' : '' %>><label for="g_r">read</label></td>
+                    <td><input type="checkbox" name="g_w" id="g_w" style="margin-left: 30px;" <%=gujarati.length!=0 &&
+                            gujarati[0].w===1 ? 'checked' : '' %>><label for="g_w">write</label></td>
+                    <td><input type="checkbox" name="g_s" id="g_s" style="margin-left: 30px;" <%=gujarati.length!=0 &&
+                            gujarati[0].s===1 ? 'checked' : '' %>><label for="g_s">speak</label></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab technologies">
+            <h3>Technologies you known</h3>
+            <table>
+
+                <%if(php.length!=0){%>
+                    <tr>
+                        <td><input type="hidden" name="tech_id[]" value="<%=php.length!=0 && php[0].id%>"></td>
+                        <td>
+                            <input type="checkbox" name="php" id="php" <%=php.length!=0 && php[0].tech_id==11
+                                ? 'checked' : '' %>>
+                            <label for="php">PHP</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="tech_php" id="b-p" style="margin-left: 30px;" value="Beginer"
+                                <%=php.length!=0 && php[0].tech_level==15 ? 'checked' : '' %>>
+                            <label for="b-p">Beginer</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="tech_php" id="m-p" style="margin-left: 30px;" value="Mideator"
+                                <%=php.length!=0 && php[0].tech_level==16 ? 'checked' : '' %>>
+                            <label for="m-p">Mideator</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="tech_php" id="e-p" style="margin-left: 30px;" value="Expert"
+                                <%=php.length!=0 && php[0].tech_level==17 ? 'checked' : '' %>>
+                            <label for="e-p">Expert</label>
+                        </td>
+                    </tr>
+                    <%}%>
+                        <%if(mysql.length!=0){%>
+                            <tr>
+                                <td><input type="hidden" name="tech_id[]" value="<%=mysql.length!=0 && mysql[0].id%>">
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="mysql" id="mysql" <%=mysql.length!=0 &&
+                                        mysql[0].tech_id==12 ? 'checked' : '' %>>
+                                    <label for="mysql">MYSQL</label>
+                                </td>
+                                <td>
+                                    <input type="radio" name="tech_mysql" id="b-m" style="margin-left: 30px;"
+                                        value="Beginer" <%=mysql.length!=0 && mysql[0].tech_level==15 ? 'checked' : ''
+                                        %>>
+                                    <label for="b-m">Beginer</label>
+                                </td>
+                                <td>
+                                    <input type="radio" name="tech_mysql" id="m-m" style="margin-left: 30px;"
+                                        value="Mideator" <%=mysql.length!=0 && mysql[0].tech_level==16 ? 'checked' : ''
+                                        %>>
+                                    <label for="m-m">Mideator</label>
+                                </td>
+                                <td>
+                                    <input type="radio" name="tech_mysql" id="e-m" style="margin-left: 30px;"
+                                        value="Expert" <%=mysql.length!=0 && mysql[0].tech_level==17 ? 'checked' : ''
+                                        %>>
+                                    <label for="e-m">Expert</label>
+                                </td>
+                            </tr>
+                            <%}%>
+
+                                <%if(laravel.length!=0){%>
+                                    <tr>
+                                        <td><input type="hidden" name="tech_id[]"
+                                                value="<%=laravel.length!=0 && laravel[0].id%>"></td>
+                                        <td>
+                                            <input type="checkbox" name="laravel" id="laravel" <%=laravel.length!=0 &&
+                                                laravel[0].tech_id==13 ? 'checked' : '' %>>
+                                            <label for="laravel">Laravel</label>
+                                        </td>
+                                        <td>
+                                            <input type="radio" name="tech_laravel" id="b-l" style="margin-left: 30px;"
+                                                value="Beginer" <%=laravel.length!=0 && laravel[0].tech_level==15
+                                                ? 'checked' : '' %>>
+                                            <label for="b-l">Beginer</label>
+                                        </td>
+                                        <td>
+                                            <input type="radio" name="tech_laravel" id="m-l" style="margin-left: 30px;"
+                                                value="Mideator" <%=laravel.length!=0 && laravel[0].tech_level==16
+                                                ? 'checked' : '' %>>
+                                            <label for="m-l">Mideator</label>
+                                        </td>
+                                        <td>
+                                            <input type="radio" name="tech_laravel" id="e-l" style="margin-left: 30px;"
+                                                value="Expert" <%=laravel.length!=0 && laravel[0].tech_level==17
+                                                ? 'checked' : '' %>>
+                                            <label for="e-l">Expert</label>
+                                        </td>
+                                    </tr>
+                                    <%}%>
+
+                                        <%if(oracle.length!=0){%>
+                                            <tr>
+                                                <td><input type="hidden" name="tech_id[]"
+                                                        value="<%=oracle.length!=0 && oracle[0].id%>"></td>
+                                                <td>
+                                                    <input type="checkbox" name="oracle" id="oracle" <%=oracle.length!=0
+                                                        && oracle[0].tech_id==14 ? 'checked' : '' %>>
+                                                    <label for="oracle">oracle</label>
+                                                </td>
+                                                <td>
+                                                    <input type="radio" name="tech_oracle" id="b-o"
+                                                        style="margin-left: 30px;" value="Beginer" <%=oracle.length!=0
+                                                        && oracle[0].tech_level==15 ? 'checked' : '' %>>
+                                                    <label for="b-o">Beginer</label>
+                                                </td>
+                                                <td>
+                                                    <input type="radio" name="tech_oracle" id="m-o"
+                                                        style="margin-left: 30px;" value="Mideator" <%=oracle.length!=0
+                                                        && oracle[0].tech_level==16? 'checked' : '' %>>
+                                                    <label for="m-o">Mideator</label>
+                                                </td>
+                                                <td>
+                                                    <input type="radio" name="tech_oracle" id="e-o"
+                                                        style="margin-left: 30px;" value="Expert" <%=oracle.length!=0 &&
+                                                        oracle[0].tech_level==17 ? 'checked' : '' %>>
+                                                    <label for="e-o">Expert</label>
+                                                </td>
+                                            </tr>
+                                            <%}%>
+
+            </table>
+        </div>
+
+
+        <div class="tab reference">
+            <h3>Reference Contact</h3><br>
+            <div class="row">
+                <%for(let i=0;i<result7.length;i++){%>
+                    <div class="ref">
+                        <input type="hidden" name="ref_id[]" value="<%=result7[i].id%>">
+                        <label for="ref_name">Name </label>
+                        <input type="text" name="ref_name[]" id="ref_name" value="<%=result7[i].ref_name%>">
+                        <label for="ref_contact" style="margin-left: 70px;">Contact Number </label>
+                        <input type="text" name="ref_contact[]" id="ref_contact" value="<%=result7[i].ref_number%>">
+                        <label for="ref_relation" style="margin-left: 70px;">Relation </label>
+                        <input type="text" name="ref_relation[]" id="ref_relation" value="<%=result7[i].ref_relation%>">
+                        <span id="refmsg"></span><br><br><br>
+                    </div>
+                    <%}%>
+            </div>
+            <input type="button" value="-" id="minus" onclick="minus_ref()" name="minus">
+            <input type="button" value="+" id="plus" onclick="plus_ref()" name="plus">
+        </div>
+
+        <div class="tab preference">
+            <h3>Preferences </h3>
+
+            <label for="location" style="margin-left: 40px;">Prefered location</label>
+            <select name="location" id="location">
+                <option value="ahmedabad" <%=result4.Prefered_location==="Ahmedabad" ? 'selected' : '' %>>Ahmedabad
+                </option>
+                <option value="banglore" <%=result4.Prefered_location==="Banglore" ? 'selected' : '' %>>Banglore
+                </option>
+                <option value="pune" <%=result4.Prefered_location==="Pune" ? 'selected' : '' %>>Pune</option>
+                <option value="chennai" <%=result4.Prefered_location==="Chennai" ? 'selected' : '' %>>Chennai</option>
+            </select>
+
+            <label for="notice" style="margin-left: 40px;">Notice period</label>
+            <input type="text" name="notice" id="notice" value="<%=result4.notice_period%>">
+            <span id="notice_p"></span>
+
+
+            <label for="department" style="margin-left: 40px;">Department</label>
+            <select name="department" id="department">
+                <option value="development" <%=result4.Department==="devlopment" ? 'selected' : '' %>>Devlopment
+                </option>
+                <option value="design" <%=result4.Department==="design" ? 'selected' : '' %>>Design</option>
+                <option value="marketing" <%=result4.Department==="marketing" ? 'selected' : '' %>>Marketing</option>
+            </select><br><br>
+
+            <label for="Expactedctc" style="margin-left: 290px;">Expacted CTC</label>
+            <input type="text" name="Expactedctc" id="Expactedctc" value="<%=result4.Expected_CTC%>">
+            <span id="e_ctc1" style="color: black;">ex: 200000</span>
+            <span id="e_ctc"></span><br><br>
+
+            <label for="currentctc" style="margin-left: 290px;">Current CTC</label>
+            <input type="text" name="currentctc" id="currentctc" value="<%=result4.Current_CTC%>">
+            <span id="c_ctc"></span>
+        </div>
+
+        </div>
+
+        <div class="btn">
+            <%if(!result.First_name){%>
+                <input type="button" id="submit" name="submit" value="Submit" style="margin-left:500px; display: none;" onclick="submitdata()">
+            <%}else{%>
+                <input type="button" id="submit" name="submit" value="Update" style="margin-left:500px; display: none;" onclick="updatedata()">
+            <%}%>
+            <input type="button" id="nextBtn" name="nextbtn" value="Next" onclick="nextprev(1)" style="float: right;">
+            <input type="button" id="prevBtn" name="prevbtn" value="Previous" onclick="nextprev(-1)" style="float: right;">
+        </div>
+        <div id="msg">
+
+        </div>
+
+    </form>
+
+    <script>
+        var currenttab = 0;
+        showtab(currenttab);
+        function showtab(n) {
+            console.log(currenttab);
+            tab = document.querySelectorAll(".tab");
+            prev = document.querySelector("#prevBtn");
+            next = document.querySelector("#nextBtn");
+            submit = document.querySelector("#submit");
+            update = document.querySelector("#update");
+
+            tab[n].style.display = "block";
+            if (n == 0) {
+                prev.style.display = "none";
+            } else {
+                prev.style.display = "block";
+            }
+            if (n == (tab.length - 1)) {
+                submit.style.display = "block";
+                next.style.display = "none";
+            }
+            else {
+                submit.style.display = "none";
+                next.style.display = "block";
+            }
+            fixStepIndicator(n);
+        }
+
+        function nextprev(n) {
+            var x = document.querySelectorAll(".tab");
+            if (n == 1 && !validateform()) return false;
+            x[currenttab].style.display = "none";
+            currenttab = currenttab + n;
+            showtab(currenttab);
+        }
+
+        function fixStepIndicator(n) {
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            x[n].className += " active";
+        }
+
+        function plus_work() {
+            row1 = document.getElementsByClassName("row1")[0];
+            div = document.createElement("div");
+            div.setAttribute("class", "experience")
+            input1 = row1.lastElementChild.getElementsByTagName("input");
+            if (row1.lastElementChild) {
+                for (let i = 1; i < input1.length; i++) {
+                    workmsg = document.getElementById("workmsg");
+                    if (input1[i].value == "") {
+                        workmsg.innerHTML = "ALL feild required!";
+                        return false;
+                    }
+                }
+            }
+
+            div.innerHTML = `
+                    <label for="companyname" style="margin-left: 50px;">Company name </label>
+                    <input type="text" name="companyname[]" id="companyname">
+                    <label for="work_designation" style="margin-left: 50px;">Designation </label>
+                    <input type="text" name="work_designation[]" id="work_designation"><br><br>
+                    <label for="fromdate" style="margin-left: 50px;">From </label>
+                    <input type="text" name="fromdate[]" id="fromdate">
+                    <label for="todate" style="margin-left: 50px;">To </label>
+                    <input type="text" name="todate[]" id="todate"><br><br><br>`;
+            row1.appendChild(div);
+        }
+        function minus_work() {
+            row1 = document.getElementsByClassName("row1");
+            row1[0].removeChild(row1[0].lastElementChild);
+        }
+
+        education = 0;
+        function plus_edu() {
+            edu = document.getElementsByClassName("edu")[0];
+            div = document.createElement("div");
+            div.setAttribute("class", "ssc")
+            input1 = edu.lastElementChild.getElementsByTagName("input");
+
+            if (edu.lastElementChild) {
+                for (let i = 1; i < input1.length; i++) {
+                    educ = document.getElementById("educ");
+                    if (input1[i].value == "") {
+                        educ.innerHTML = "ALL feild required!";
+                        return false;
+                    }
+                }
+            }
+
+            div.innerHTML = `
+            <label for="sscboard" style="margin-left: 40px;">Cource </label>
+                    <select name="cource[]">
+                        <option value="ssc" selected>SSC</option>
+                        <option value="hsc">HSC</option>
+                        <option value="Degree">Degree</option>
+                        <option value="master">Master</option>
+                    </select>
+                    <label for="board" style="margin-left: 40px;">Board/University</label>
+                    <input type="text" name="board[]" id="board"><br><br>
+                    <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
+                    <input type="text" name="passingyear[]" id="passingyear">
+                    <label for="percentage" style="margin-left: 40px;">Percentage </label>
+                    <input type="text" name="percentage[]" id="percentage">
+                    <span id="educ"></span>
+                    `;
+            education++;
+            edu.appendChild(div);
+        }
+        function minus_edu() {
+            if (education > 0) {
+                edu = document.getElementsByClassName("edu");
+                edu[0].removeChild(edu[0].lastElementChild);
+                education--;
+            }
+        }
+
+        function plus_ref() {
+            row = document.getElementsByClassName("row")[0];
+            div = document.createElement("div");
+            div.setAttribute("class", "ref")
+            input1 = row.lastElementChild.getElementsByTagName("input");
+            console.log(input1);
+            if (row.lastElementChild) {
+                for (let i = 1; i < input1.length; i++) {
+                    refmsg = document.getElementById("refmsg");
+                    if (input1[i].value == "") {
+                        refmsg.innerHTML = "ALL feild required!";
+                        return false;
+                    }
+                }
+            }
+
+            div.innerHTML = `
+                    <label for="ref_name">Name </label>
+                    <input type="text" name="ref_name[]" id="ref_name">
+                    <label for="ref_contact" style="margin-left: 70px;">Contact Number </label>
+                    <input type="text" name="ref_contact[]" id="ref_contact">
+                    <label for="ref_relation" style="margin-left: 70px;">Relation </label>
+                    <input type="text" name="ref_relation[]" id="ref_relation"><br><br><br>`;
+            row.appendChild(div);
+        }
+        function minus_ref() {
+            row = document.getElementsByClassName("row");
+            row[0].removeChild(row[0].lastElementChild);
+        }
+
+        function validateform() {
+            let input = document.getElementsByTagName("input");
+            span = document.getElementsByTagName("span");
+            valid = true;
+            for (let i = 0; i < input.length; i++) {
+                const x = document.forms["form"][input[i].name];
+                if (x.name == "firstname") {
+                    fname = document.getElementById("fname");
+                    if (x.value == "") {
+                        fname.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^[a-z ,.'-]+$/i.test(x.value)) {
+                        fname.innerHTML = "Only Character!";
+                        valid = false;
+                    }
+                }
+                if (x.name == "lastname") {
+                    lname = document.getElementById("lname");
+                    if (x.value == "") {
+                        lname.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^[a-z ,.'-]+$/i.test(x.value)) {
+                        lname.innerHTML = "Only Character!";
+                        valid = false;
+                    }
+                }
+                if (x.name == "city") {
+                    citymsg = document.getElementById("citymsg");
+                    if (x.value == "") {
+                        citymsg.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^[a-z ,.'-]+$/i.test(x.value)) {
+                        citymsg.innerHTML = "Only Character!";
+                        valid = false;
+                    }
+                }
+                if (x.name == "state") {
+                    statemsg = document.getElementById("statemsg");
+                    if (x.value == "") {
+                        statemsg.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^[a-z ,.'-]+$/i.test(x.value)) {
+                        statemsg.innerHTML = "Only Character!";
+                        valid = false;
+                    }
+                }
+
+                if (x.name == "email") {
+                    emailmsg = document.getElementById("emailmsg");
+                    if (x.value == "") {
+                        emailmsg.innerHTML = "Required!";
+                        valid = false;
+                    }
+                    else if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(x.value)) {
+                        emailmsg.innerHTML = "Enter Valid Email-id";
+                        valid = false;
+                    }
+                }
+
+                if (x.name == "phonenumber") {
+                    numbermsg = document.getElementById("numbermsg");
+                    if (x.value == "") {
+                        numbermsg.innerHTML = "Requied!";
+                        valid = false;
+                    }
+                    else if (!/^\d{10}$/.test(x.value)) {
+                        numbermsg.innerHTML = "Enter 10 digits";
+                        valid = false;
+                    }
+                }
+
+                addmsg = document.querySelectorAll(".addmsg");
+                if (x.name == "address1") {
+                    if (x.value == "") {
+                        addmsg[0].innerHTML = "Requied!";
+                        valid = false;
+                    }
+                    else if (!/^[a-zA-Z0-9\s\,\''\-]*$/.test(x.value)) {
+                        addmsg[0].innerHTML = "Enter Valid Address!";
+                        valid = false;
+                    }
+                }
+                if (x.name == "address2") {
+                    if (x.value == "") {
+                        addmsg[1].innerHTML = "Requied!";
+                        valid = false;
+                    }
+                    else if (!/^[a-zA-Z0-9\s\,\''\-]*$/.test(x.value)) {
+                        addmsg[1].innerHTML = "Enter Valid Address!"; valid = false;
+                    }
+                }
+
+                if (x.name == "zipcode") {
+                    zipmsg = document.getElementById("zipmsg");
+                    if (x.value == "") {
+                        zipmsg.innerHTML = "Requied!";
+                        valid = false;
+                    }
+                    else if (!/^\d{6}$/.test(x.value)) {
+                        zipmsg.innerHTML = "Enter only 6 digits!";
+                        valid = false;
+                    }
+                }
+
+                if (x.name == "dob") {
+                    dob = document.querySelector(".dobmsg");
+                    if (x.value == "") {
+                        dob.innerHTML = "Requied!";
+                        valid = false;
+                    }
+                    else if (!/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(x.value)) {
+                        dob.innerHTML = "yyyy-mm-dd";
+                        valid = false;
+                    }
+                }
+
+                if (currenttab === 6) {
+                    if (x.name == "notice") {
+                        notice_p = document.getElementById("notice_p");
+                        if (x.value == "") {
+                            notice_p.innerHTML = "Required!"; valid = false;
+                        }
+                        else if (!/^[A-Za-z0-9 .]*$/.test(x.value)) {
+                            notice_p.innerHTML = "ex: 2 months"; valid = false;
+                        }
+                    }
+
+                    if (x.name == "Expactedctc") {
+                        e_ctc = document.getElementById("e_ctc");
+                        if (x.value == "") {
+                            e_ctc.innerHTML = "Required!"; valid = false;
+                        }
+
+                    }
+
+                    // if (x.name == "currentctc") {
+                    //     c_ctc = document.getElementById("c_ctc");
+                    //     c_ctc.innerHTML = "(ex: 2 LPA)"
+                    //     if (x.value == "") {
+                    //         c_ctc.innerHTML = "Required!"; valid = false;
+                    //     }
+                    //     else if (!/^[A-Za-z0-9 .]*$/.test(x.value)) {
+                    //         c_ctc.innerHTML = "ex: 2 LPA"; valid = false;
+                    //     }
+                    // }
+                }
+
+            }
+            return valid;
+        }
+
+        async function submitdata() {
+            let formdata = document.getElementById("regForm");
+            let data = new FormData(formdata);
+            const params = new URLSearchParams(data);
+            const jobdata = await new Response(params).text();
+            console.log(typeof (jobdata));
+
+            console.log("Insert data!");
+
+            let data2 = await fetch("http://localhost:9013/ajax_crud/ajax_submit", {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/x-www-form-urlencoded'
+                },
+                body: jobdata
+            })
+            let result = await data2.json();
+            document.getElementById("msg").innerHTML = result.msg + `<a href="/ajax_crud/listdata">Update</a>`;
+           
+        }
+
+        async function updatedata() {
+            let formdata = document.getElementById("regForm");
+            let data = new FormData(formdata);
+            const params = new URLSearchParams(data);
+            const jobdata = await new Response(params).text();
+            console.log(typeof (jobdata));
+
+            console.log("Update data!");
+
+            let data2 = await fetch("http://localhost:9013/ajax_crud/listdata/<%=result.Employee_id%>/update", {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/x-www-form-urlencoded'
+                },
+                body: jobdata
+            })
+            let result = await data2.json();
+            document.getElementById("msg").innerHTML = result.msg ;
+        }
+
+    </script>
+</body>
+
+</html>
