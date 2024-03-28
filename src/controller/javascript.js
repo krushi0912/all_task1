@@ -39,4 +39,11 @@ const events = async (req,res)=>{
         res.send(err);
     }
 }
+const sorting = async (req,res)=>{
+    try {
+        res.sendFile(path.join(__dirname, '../../public','pages','sorting2.html'))
+    } catch (err) {
+        res.send(err);
+    }
+}
 module.exports = {dynamic,kukucube,tic,events}
