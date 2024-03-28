@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timezone</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            margin: 40px;
+        }
+
+        select {
+            padding: 8px 30px;
+            text-align: center;
+            width: 200px;
+            font-size: 15px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="box">
+            city : <select name="city1" id="city1" onchange="timehandle(this.value)">
+                <option value="select">select</option>
+                <option value="Asia/Kolkata">Delhi (IST)</option>
+                <option value="Asia/Kolkata">Kolkata (IST)</option>
+                <option value="America/Los_Angeles">Los_Angles (PST)</option>
+                <option value="Europe/London">London (GMT)</option>
+                <option value="Australia/Sydney">Sydeny (UTC)</option>
+                <option value="America/New_York">New_York (EST)</option>
+                <option value="Europe/Paris">Paris (UTC)</option>
+                <option value="Asia/Tokyo">Tokyo (UTC)</option>
+                <option value="America/Sao_Paulo">Sao_Paulo (UTC)</option>
+                <option value="Europe/Moscow">Moscow (UTC)</option>
+                <option value="Asia/Dubai">Dubai (UTC)</option>
+                <option value="America/Chicago">Chicago (CST)</option>
+            </select><br><br>
+
+            Time (IST) : <p id="Time1"></p>
+            converted_time : <p id="Time2"></p>
+        </div>
+
+        
+    </div>
+    <script>
+        var date;
+        function timehandle(value) {
+            time = new Date().toLocaleString('en-US',{
+                timezone : 'Asia/Kolkata'
+            })
+            document.querySelector("#Time1").innerHTML = time;
+            
+            date = new Date(time).toLocaleString('en-US',{
+                timeZone : value
+            });
+            document.querySelector("#Time2").innerHTML =   date;
+        }
+        
+        
+        </script>
+</body>
+
+</html>

@@ -59,6 +59,13 @@ const citydata = async(req,res)=>{
     }
 }
 
-module.exports = {fetchdata,fetchuser,state_city,statedata,citydata};
+const timezone =async (req,res)=>{
+    try{
+        res.render("timezone");
+    }catch(err){
+        res.send(err);
+    }
+}
+module.exports = {fetchdata,fetchuser,state_city,statedata,citydata,timezone};
 
 
