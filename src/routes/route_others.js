@@ -11,6 +11,4 @@ other.route("/state").get(statedata);
 other.route("/city/:state").get(citydata);
 other.route("/timezone").get(timezone);
 
-
-
 module.exports = other;

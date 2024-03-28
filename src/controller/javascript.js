@@ -13,35 +13,41 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const dynamic = async (req,res)=>{
     try {
-        res.sendFile(path.join(__dirname, '../../public','pages','Task1_box.html'))
+        if(req.cookies.token) res.sendFile(path.join(__dirname, '../../public','pages','Task1_box.html'))
+        else res.render("login")
     } catch (err) {
         res.send(err);
     }
 }
 const kukucube = async (req,res)=>{
     try {
-        res.sendFile(path.join(__dirname, '../../public','pages','Task2_box_game.html'))
+        if(req.cookies.token) res.sendFile(path.join(__dirname, '../../public','pages','Task2_box_game.html'))
+        else res.render("login")
     } catch (err) {
         res.send(err);
     }
 }
 const tic = async (req,res)=>{
     try {
-        res.sendFile(path.join(__dirname, '../../public','pages','tic-tac-toe.html'))
+        if(req.cookies.token) res.sendFile(path.join(__dirname, '../../public','pages','tic-tac-toe.html'))
+        else res.render("login")
     } catch (err) {
         res.send(err);
     }
 }
 const events = async (req,res)=>{
     try {
-        res.sendFile(path.join(__dirname, '../../public','pages','jsevents.html'))
+        if(req.cookies.token) res.sendFile(path.join(__dirname, '../../public','pages','jsevents.html'))
+        else res.render("login")
     } catch (err) {
         res.send(err);
     }
 }
 const sorting = async (req,res)=>{
     try {
-        res.sendFile(path.join(__dirname, '../../public','pages','sorting2.html'))
+        if(req.cookies.token) res.sendFile(path.join(__dirname, '../../public','pages','sorting2.html'))
+        else res.render("login")
+        
     } catch (err) {
         res.send(err);
     }
