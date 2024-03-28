@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .container {
+            display: flex;
+            float: right;
+        }
+
+        .container i {
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid rgb(188, 185, 185);
+            border-radius: 10px;
+            margin: 5px;
+            background-color: rgb(221, 243, 250);
+            color: grey;
+        }
+
+        .page {
+            padding: 10px 10px;
+            margin: 5px;
+            border: 2px solid rgb(188, 185, 185);
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/pagination/attendance_report?page=1" method="get">
+        <% if(m=="december2023" ){ %>
+            <select name="month" id="month">
+                <option value="december2023" selected>december 2023</option>
+                <option value="january2024">january 2024</option>
+                <option value="february2024">february2024</option>
+            </select>
+        <% } %>
+        <% if(m=="january2024" ){ %>
+            <select name="month" id="month">
+                <option value="december2023">december 2023</option>
+                <option value="january2024" selected>january 2024</option>
+                <option value="february2024">february2024</option>
+            </select>
+        <% } %>
+        <% if(m=="february2024" ){ %>
+            <select name="month" id="month">
+                <option value="december2023">december 2023</option>
+                <option value="january2024">january 2024</option>
+                <option value="february2024" selected>february2024</option>
+            </select>
+        <% } %>
+        <input type="submit" value="go">
+    </form>
+    <h3>month is : <%=m%>
+    </h3>
+    <div class="container">
+        <a href="/pagination/attendance_report?page=1&<%=m%>" <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
+                    class="fa-solid fa-angles-left"></i></a>
+        <a href="/pagination/attendance_report?page=<%=Number(p)-1 %>&<%=m%>" <%if(Number(p)==1){%>onclick='return false;'<%}%> ><i
+                    class="fa-solid fa-angle-left"></i></a>
+        <div class="page">
+            <%=p%>
+        </div>
+        <a href="/pagination/attendance_report?page=<%=Number(p)+1 %>&<%=m%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
+                    class="fa-solid fa-angle-right"></i></a>
+        <a href="/pagination/attendance_report?page=<%=lastpage%>&<%=m%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
+                    class="fa-solid fa-angles-right"></i></a>
+    </div>
+</body>
+
+</html>

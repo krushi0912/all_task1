@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list_data</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            /* margin: auto; */
+        }
+
+        th {
+            background-color: rgb(106, 105, 105);
+            border: 2px solid black;
+            padding: 9px 12px;
+            font-size: 14px;
+
+        }
+
+        .sort {
+            display: flex;
+            flex-direction: column;
+            float: right;
+        }
+
+        th a {
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            float: left;
+        }
+
+        .sort i {
+            font-size: 20px;
+            color: white;
+        }
+
+
+        td {
+            border: 2px solid black;
+            padding: 7px 4px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(199, 245, 245);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(228, 223, 223);
+        }
+
+        .search {
+            display: flex;
+            margin: 50px;
+        }
+
+        .form {
+            margin: auto;
+        }
+        .form input[type='text']{
+            width: 400px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;        
+        }
+        .form input[type='submit']{
+            padding: 10px;
+            border-radius: 10px;  
+            background-color: rgb(199, 245, 245);   
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3 style="text-align: center;">Krushi Patel || 5/3/2024</h3>
+    <div class="search">
+        <table>
+            <tr>
+                <th>Firstname</th>
+                <th>lastname</th>
+                <th>email</th>
+                <th>gender</th>
+                <th>city</th>
+            </tr>
+            <tr>
+                <td>_</td>
+                <td>^</td>
+                <td>$</td>
+                <td>#</td>
+                <td>:</td>
+            </tr>
+        </table>
+        <div class="form">
+            <form action="/search/delimeter_search">
+                Search : <input type="text" name="input" tabindex="0" autofocus value="<%=input%>">
+                <input type="submit" value="Go">
+            </form>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>lastname</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>address</th>
+                <th>city</th>
+                <th>country</th>
+                <th>pincode</th>
+                <th>birth_date</th>
+                <th>created_at</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0 ; i<result.length ; i++){ %>
+                <tr>
+                    <td>
+                        <%=result[i].id%>
+                    </td>
+                    <td>
+                        <%=result[i].firstname%>
+                    </td>
+                    <td>
+                        <%=result[i].lastname%>
+                    </td>
+                    <td>
+                        <%=result[i].email%>
+                    </td>
+                    <td>
+                        <%=result[i].gender%>
+                    </td>
+                    <td>
+                        <%=result[i].address%>
+                    </td>
+                    <td>
+                        <%=result[i].city%>
+                    </td>
+                    <td>
+                        <%=result[i].country%>
+                    </td>
+                    <td>
+                        <%=result[i].pincode%>
+                    </td>
+                    <td>
+                        <%=result[i].birth_date%>
+                    </td>
+                    <td>
+                        <%=result[i].created_at%>
+                    </td>
+
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            /* margin: auto; */
+            width: 100%;
+        }
+
+        th {
+            background-color: rgb(106, 105, 105);
+            color: white;
+            border: 2px solid black;
+            padding: 5px 12px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        td {
+            border: 2px solid black;
+            padding: 4px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(199, 245, 245);
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(228, 223, 223);
+        }
+
+        form {
+            text-align: center;
+        }
+
+        form input[type='text'] {
+            border-radius: 10px;
+            font-size: 17px;
+        }
+
+        form input[type='submit'] {
+            border-radius: 5px;
+            font-size: 15px;
+            padding: 7px 14px;
+            background-color: rgb(221, 243, 250);
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h4 style="text-align: center;">Krushi Patel|| 29/04/2024</h4>
+
+    <form action="/pagination/dynamic_grid?page=1" method="get">
+        <label for="textquery">Query:</label>
+        <input type="text" style="width: 30%; height: 30px;" name="textquery"><br><br>
+        <input type="submit" value="search"> <br>
+    </form>
+
+    <% if(result.length !=0){%>
+            <p>Query is :<%=sql%></p>
+            
+        <div class="component">
+            <%- include('./partials/dynamicgrid_component',{p,lastpage}) %>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <% for(let i=0 ; i<key.length ; i++){ %>
+                        <th>
+                           <%=key[i]%>
+                        </th>
+                        <%}%>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0 ; i<result.length ; i++){ %>
+                    <tr>
+                        <% for(let j=0 ; j<key.length ; j++){ %>
+                            <td>
+                                <%= result[i][key[j]] %>
+                            </td>
+                            <%}%>
+                    </tr>
+                    <%}%>
+            </tbody>
+        </table>
+        <%}%>
+</body>
+
+</html>

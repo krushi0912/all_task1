@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <style>
+        h3 {
+            margin-left: 40px;
+        }
+        .result{
+            border: 2px solid black;
+            padding: 30px 10px;
+            width: 80%;
+            margin: auto;
+        }
+
+        table {
+            border: 0px solid black;
+            border-collapse: collapse;
+            margin: auto;
+            width: 95%;
+        }
+
+        th {
+            background-color: rgb(106, 105, 105);
+            color: white;
+            border: 2px solid black;
+            padding: 5px 12px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        td {
+            border: 2px solid black;
+            padding: 4px;
+            text-align: center;
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h4 style="text-align: center;">Krushi Patel || 28/02/2024</h4>
+
+    <div class="result">
+
+        <h3>Id : <%=result[0].id %>
+        </h3>
+        <h3>Name : <%=result[0].firstname %>
+        </h3>
+        <table>
+            <tr>
+                <th rowspan="2">Subject Name</th>
+                <th colspan="2">Terminal</th>
+                <th colspan="2">Prilim</th>
+                <th colspan="2">Final</th>
+                <th rowspan="2">TotalMarks</th>
+            </tr>
+            <tr>
+                <th>Theory</th>
+                <th>Practical</th>
+                <th>Theory</th>
+                <th>Practical</th>
+                <th>Theory</th>
+                <th>Practical</th>
+            </tr>
+            <%for(let i=0;i<result.length;i+=3){%>
+                <tr>
+                    <td>
+                        <%=result[i].sub_name%>
+                    </td>
+                    <% for( let j=i; j < i+3; j++ ) { %>
+                        <td>
+                            <%=result[j].theory%>
+                        </td>
+                        <td>
+                            <%=result[j].practical%>
+                        </td>
+                        <% } %>
+                            <td>
+                                <%= result[i].theory + result[i].practical + result[i+1].theory + result[i+1].practical
+                                    + result[i+2].theory + result[i+2].practical%>
+                            </td>
+                </tr>
+                <%}%>
+                <tr>
+                    <td>Attendance = <%=parseFloat((result2[0].attendance/91)*100).toFixed(2)%> %</td>
+                </tr>
+        </table>
+    </div>
+</body>
+
+</html>

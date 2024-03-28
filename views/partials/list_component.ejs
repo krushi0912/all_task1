@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <!-- <form action="/?page=1" method="get">
+    <form action="/pagination/student_list?page=1" method="get">
         <label for="select">Order_by : </label>
         <select name="select" id="sort">
             <option value="id">id</option>
@@ -49,20 +49,21 @@
         desc <input type="radio" name="sort" value="desc">
         <br><br>
         <input type="submit" value="sort">
-    </form> -->
+    </form>
 
     <div class="container">
-        <a href="?page=1&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
+        <%if(Number(p)!=1){%>
+        <a href="?page=1&select=<%=order_by%>&sort=<%=order%>" ><i
                     class="fa-solid fa-angles-left"></i></a>
-        <a href="?page=<%=Number(p)-1 %>&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==1){%>onclick='return
-            false;'<%}%> ><i class="fa-solid fa-angle-left"></i></a>
+        <a href="?page=<%=Number(p)-1 %>&select=<%=order_by%>&sort=<%=order%>" ><i class="fa-solid fa-angle-left"></i></a>
+        <%}%> 
         <div class="page">
             <%=p%>
         </div>
-        <a href="?page=<%=Number(p)+1 %>&select=<%=order_by%>&sort=<%=order%>"
-            <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i class="fa-solid fa-angle-right"></i></a>
-        <a href="?page=248&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==lastpage){%>onclick='return false;'
-            <%}%>><i class="fa-solid fa-angles-right"></i></a>
+        <%if(Number(p)!=lastpage){%>
+        <a href="?page=<%=Number(p)+1 %>&select=<%=order_by%>&sort=<%=order%>"><i class="fa-solid fa-angle-right"></i></a>
+        <a href="?page=10&select=<%=order_by%>&sort=<%=order%>" ><i class="fa-solid fa-angles-right"></i></a>
+            <%}%> 
     </div>
 </body>
 

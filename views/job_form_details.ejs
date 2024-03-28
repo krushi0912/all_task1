@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .details{
+            /* border: 2px solid black; */
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="details">
+        <%for(let i=0 ;i<result.length ; i++){%>
+            <p>
+                <b>Firstname : </b><%=result[i].First_name%>
+            </p>
+            <p>
+                <b>Lastname : </b><%=result[i].Last_name%>
+            </p>
+            <p>
+                <b>Designation : </b><%=result[i].Designation%>
+            </p>
+            <p>
+                <b>Email : </b><%=result[i].Email%>
+            </p>
+            <p>
+                <b>Contact_no. : </b><%=result[i].Phone_number%>
+            </p>
+            <p>
+                <b>Address : </b><%=result[i].Address_1 + " " + result[i].Address_2%>
+            </p>
+            <p>
+                <b>City : </b><%=result[i].City%>
+            </p>
+            <a href="/crud/submit/<%=result[i].Employee_id%>"><input type="button" value="Update"></a>
+            <%}%>
+    </div>
+</body>
+
+</html>

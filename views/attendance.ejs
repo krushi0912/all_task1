@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance_data</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            /* margin: auto; */
+            width: 100%;
+        }
+
+        th {
+            background-color: rgb(106, 105, 105);
+            color: white;
+            border: 2px solid black;
+            padding: 5px 12px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        td {
+            border: 2px solid black;
+            padding: 4px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(199, 245, 245);
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(228, 223, 223);
+        }
+    </style>
+</head>
+
+<body>
+    <h4 style="text-align: center;">Krushi Patel || 27/02/2024</h4>
+    <div class="component">
+        <%- include('./partials/attendance_component', {p,m}) %>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>PresentDay</th>
+                <th>PercentageOfAttendance</th>
+                <th>___</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(i=0 ; i<result.length ; i++){ %>
+                <tr>
+                    <td>
+                        <%= result[i].id%>
+                    </td>
+                    <td>
+                        <%= result[i].firstname%>
+                    </td>
+                    <td>
+                        <%= result[i].presentDay%>
+                    </td>
+                    <% if(m=='december2023' ){ %>
+                        <td>
+                            <%= parseFloat((result[i].presentDay/31)*100).toFixed(2) %> %
+                        </td>
+                    <% } %>
+                    <% if(m=='january2024' ){ %>
+                        <td>
+                            <%= parseFloat((result[i].presentDay/31)*100).toFixed(2) %> %
+                        </td>
+                    <% } %>
+                    <% if(m=='february2024' ){ %>
+                        <td>
+                            <%= parseFloat((result[i].presentDay/29)*100).toFixed(2) %> %
+                        </td>
+                    <% } %>
+                    <td></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>

@@ -31,6 +31,7 @@
         td {
             border: 2px solid black;
             padding: 40px 50px;
+            text-align: center;
         }
 
         th {
@@ -39,14 +40,14 @@
             font-size: 18px;
         }
         a{
-            text-decoration: none;
+
             color: black;
             font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <h2>Here all tasks</h2>
+    <h2>Tasks</h2>
     <table>
         <tr>
             <th colspan="4">Javascript</th>
@@ -61,10 +62,24 @@
             <th colspan="4">Pagination</th>
         </tr>
         <tr>
-            <td><a href="/pagination/student_list">Students_master with sorting</a></td>
-            <td><a href="/">attendance report</a></td>
-            <td><a href="/">Exam_report</a></td>
-            <td><a href="/">Dynamic grid</a></td>
+            <td><a href="/pagination/student_list">Students_master<br> List (with sorting)</a></td>
+            <td><a href="/pagination/attendance_report">attendance report</a></td>
+            <td><a href="/pagination/exam_report">Exam_report</a></td>
+            <td><a href="/pagination/dynamic_grid">Dynamic grid</a></td>
+        </tr>
+        <tr>
+            <th colspan="4">Searching</th>
+        </tr>
+        <tr>
+            <td colspan="2"><a href="/search/searching">Searching <br>(id or any details)</a></td>
+            <td colspan="2"><a href="/search/delimeter_search">Delimeter Searching</a></td>
+        </tr>
+        <tr>
+            <th colspan="4">Job Application CRUD</th>
+        </tr>
+        <tr>
+            <td colspan="2"><a href="/crud/form">CRUD using node <br>(Job Application)</a></td>
+            <td colspan="2"><a href="/">CRUD using AJAX <br>(Job Application)</a></td>
         </tr>
     </table>
 </body>
