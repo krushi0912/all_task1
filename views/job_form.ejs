@@ -145,7 +145,7 @@
             <span id="desmsg"></span><br><br>
 
             <label for="email">Email :</label>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email" placeholder="abc@123gmail.com">
             <span id="emailmsg"></span>
 
             <label for="address1" style="margin-left: 110px;">Address 1 :</label>
@@ -153,7 +153,7 @@
             <span class="addmsg"></span><br><br>
 
             <label for="phonenumber">Phone Number :</label>
-            <input type="text" name="phonenumber" id="phonenumber">
+            <input type="text" name="phonenumber" id="phonenumber" placeholder="1234567895">
             <span id="numbermsg"></span>
 
             <label for="address2" style="margin-left: 40px;">Address 2 :</label>
@@ -182,11 +182,11 @@
             <span id="statemsg"></span><br><br>
 
             <label for="dob">Date of Birth : </label>
-            <input type="text" name="dob" id="dob">
+            <input type="text" name="dob" id="dob" placeholder="yyyy-mm-dd">
             <span class="dobmsg"></span>
 
             <label for="zipcode" style="margin-left: 60px;">Zipcode :</label>
-            <input type="text" name="zipcode" id="zipcode">
+            <input type="text" name="zipcode" id="zipcode" placeholder="123456">
             <span id="zipmsg"></span>
         </div><br><br>
 
@@ -205,9 +205,9 @@
                     <label for="board" style="margin-left: 40px;">Board/University</label>
                     <input type="text" name="board[]" id="board">
                     <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
-                    <input type="text" name="passingyear[]" id="passingyear">
+                    <input type="text" name="passingyear[]" id="passingyear" placeholder="2000">
                     <label for="percentage" style="margin-left: 40px;">Percentage </label>
-                    <input type="text" name="percentage[]" id="percentage">
+                    <input type="text" name="percentage[]" id="percentage" placeholder="80">
                     <span id="educ"></span>
                 </div>
                 
@@ -228,9 +228,9 @@
                     <label for="work_designation" style="margin-left: 50px;">Designation </label>
                     <input type="text" name="work_designation[]" id="work_designation">
                     <label for="fromdate" style="margin-left: 50px;">From </label>
-                    <input type="text" name="fromdate[]" id="fromdate">
+                    <input type="text" name="fromdate[]" id="fromdate" placeholder="yyyy-mm-dd">
                     <label for="todate" style="margin-left: 50px;">To </label>
-                    <input type="text" name="todate[]" id="todate">
+                    <input type="text" name="todate[]" id="todate" placeholder="yyyy-mm-dd">
                     <span id="workmsg"></span>
                     <br><br><br>
                 </div>
@@ -366,7 +366,7 @@
                     <label for="ref_name">Name </label>
                     <input type="text" name="ref_name[]" id="ref_name">
                     <label for="ref_contact" style="margin-left: 70px;">Contact Number </label>
-                    <input type="text" name="ref_contact[]" id="ref_contact">
+                    <input type="text" name="ref_contact[]" id="ref_contact" placeholder="1234567895">
                     <label for="ref_relation" style="margin-left: 70px;">Relation </label>
                     <input type="text" name="ref_relation[]" id="ref_relation">
                     <span id="refmsg"></span><br><br><br>
@@ -389,7 +389,7 @@
             </select>
 
             <label for="notice" style="margin-left: 40px;">Notice period</label>
-            <input type="text" name="notice" id="notice">
+            <input type="text" name="notice" id="notice" placeholder="2 month">
             <span id="notice_p"></span>
 
 
@@ -429,7 +429,6 @@
                     }
                 }
             }
-
             div.innerHTML = `
                     <label for="companyname" style="margin-left: 50px;">Company name </label>
                     <input type="text" name="companyname[]" id="companyname">
@@ -441,6 +440,7 @@
                     <input type="text" name="todate[]" id="todate"><br><br><br>`;
             row1.appendChild(div);
         }
+        
         function minus_work() {
             row1 = document.getElementsByClassName("row1");
             row1[0].removeChild(row1[0].lastElementChild);

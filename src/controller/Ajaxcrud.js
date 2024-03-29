@@ -62,14 +62,16 @@ const ajax_submitform = async (req,res)=>{
     var basic = await con.promise().query(sql1, [firstname, lastname, designation, email, phonenumber, address1, address2, city, state, zipcode, gender, dob, Relationshipstatus]);
     employee_id = basic[0].insertId;
 
-    var sql2 = 'INSERT INTO education_master(`emp_id`, `cource`, `board`, `passing_year`, `percentage`) VALUES (?,?,?,?,?)';
+    var sql2 = 'INSERT INTO `education_master` (`emp_id`, `cource`, `board`, `passing_year`, `percentage`) VALUES (?,?,?,?,?)';
     for (let i = 0; i < cource.length; i++) {
-        await con.promise().query(sql2, [employee_id, cource[i], board[i], passingyear[i], percentage[i]]);
+        if(cource[i] && board[i] && passingyear[i] && percentage[i]){
+            await con.promise().query(sql2, [employee_id, cource[i], board[i], passingyear[i], percentage[i]]);
+        }
     }
 
-    if(companyname){
-        var sql3 = 'INSERT INTO work_experience(`e_id`, `company_name`, `designation`, `from_date`, `to_date`) VALUES (?,?,?,?,?)';
-        for (let i = 0; i < companyname.length; i++) {
+    var sql3 = 'INSERT INTO work_experience(`e_id`, `company_name`, `designation`, `from_date`, `to_date`) VALUES (?,?,?,?,?)';
+    for (let i = 0; i < companyname.length; i++) {
+        if (companyname[i] && work_designation[i] && fromdate[i] && todate[i]) {
             await con.promise().query(sql3, [employee_id, companyname[i], work_designation[i], fromdate[i], todate[i]])
         }
     }
@@ -110,9 +112,9 @@ const ajax_submitform = async (req,res)=>{
     if(oracle)  await con.promise().query(sql5, [employee_id,oracle,tech_oracle]);
 
 
-    if(ref_name){
-        var sql6 = 'INSERT INTO referance_contact (`e_id`,`ref_name`, `ref_number`, `ref_relation`) VALUES (?,?,?,?);';
-        for (let i = 0; i < ref_name.length; i++) {
+    var sql6 = 'INSERT INTO referance_contact (`e_id`,`ref_name`, `ref_number`, `ref_relation`) VALUES (?,?,?,?);';
+    for (let i = 0; i < ref_name.length; i++) {
+        if (ref_name[i]&&ref_contact[i]&&ref_contact[i]&&ref_relation[i]) {
             await con.promise().query(sql6, [employee_id, ref_name[i], ref_contact[i], ref_relation[i]])
         }
     }

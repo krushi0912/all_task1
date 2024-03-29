@@ -195,7 +195,7 @@
             <span id="desmsg"></span><br><br>
 
             <label for="email">Email :</label>
-            <input type="text" name="email" id="email" value="<%=result.Email%>">
+            <input type="text" name="email" id="email" value="<%=result.Email%>" placeholder="abc@gmail.com">
             <span id="emailmsg"></span>
 
             <label for="address1" style="margin-left: 110px;">Address 1 :</label>
@@ -203,7 +203,7 @@
             <span class="addmsg"></span><br><br>
 
             <label for="phonenumber">Phone Number :</label>
-            <input type="text" name="phonenumber" id="phonenumber" value="<%=result.Phone_number%>">
+            <input type="text" name="phonenumber" id="phonenumber" value="<%=result.Phone_number%>" placeholder="1234567895">
             <span id="numbermsg"></span>
 
             <label for="address2" style="margin-left: 40px;">Address 2 :</label>
@@ -232,12 +232,12 @@
             <span id="statemsg"></span><br><br>
 
             <label for="dob">Date of Birth : </label>
-            <input type="text" name="dob" id="dob"
-                value="<%=(result && result.Date_of_Birth) ? JSON.stringify(result.Date_of_Birth).slice(1,11) : ' ' %>">
+           <input type="text" name="dob" id="dob" value="<%=(result && result.Date_of_Birth) ? JSON.stringify(result.Date_of_Birth).slice(1,11) : ' ' %>">
+           <span id="dobmsg1" style="color: black;">yyyy-mm-dd</span>
             <span class="dobmsg"></span>
 
             <label for="zipcode" style="margin-left: 60px;">Zipcode :</label>
-            <input type="text" name="zipcode" id="zipcode" value="<%=result.Zip_code%>">
+            <input type="text" name="zipcode" id="zipcode" value="<%=result.Zip_code%>" placeholder="123456"> 
             <span id="zipmsg"></span>
         </div>
 
@@ -257,9 +257,9 @@
                         <label for="board" style="margin-left: 40px;">Board/University</label>
                         <input type="text" name="board[]" id="board" value="<%=result2[i].board%>"><br><br>
                         <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
-                        <input type="text" name="passingyear[]" id="passingyear" value="<%=result2[i].passing_year%>">
+                        <input type="text" name="passingyear[]" id="passingyear" value="<%=result2[i].passing_year%>" placeholder="2000">
                         <label for="percentage" style="margin-left: 40px;">Percentage </label>
-                        <input type="text" name="percentage[]" id="percentage" value="<%=result2[i].percentage%>">
+                        <input type="text" name="percentage[]" id="percentage" value="<%=result2[i].percentage%>" placeholder="80">
                         <span id="educ"></span>
                     </div>
                     <%}%>
@@ -282,6 +282,7 @@
                         <label for="fromdate" style="margin-left: 50px;">From </label>
                         <input type="text" name="fromdate[]" id="fromdate"
                             value="<%=(result3[i] && result3[i].from_date) ? JSON.stringify(result3[i].from_date).slice(1,11) : ' ' %>">
+                        <span id="date" style="color: black;">yyyy-mm-dd</span>
                         <label for="todate" style="margin-left: 50px;">To </label>
                         <input type="text" name="todate[]" id="todate"
                             value="<%=(result3[i] && result3[i].to_date) ? JSON.stringify(result3[i].to_date).slice(1,11) : ' ' %>">
@@ -512,7 +513,7 @@
             <input type="text" name="currentctc" id="currentctc" value="<%=result4.Current_CTC%>">
             <span id="c_ctc"></span>
         </div>
-
+        
         </div>
 
         <div class="btn">
