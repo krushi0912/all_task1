@@ -64,7 +64,7 @@ const getpassword = async (req,res)=>{
         data = await con.promise().query(`select * from users where id = ${id}`);
         var result = data[0][0];
         let diff = new Date().valueOf() - result.created_time.valueOf();
-        let min = Math.floor(diff / (1000 ));
+        let min = Math.floor(diff / (1000*60));
         res.render("password", { result, min, accesskey });
     } catch (err) {
         res.send(err);
@@ -142,18 +142,19 @@ const postverifyemail = async (req,res)=>{
     }
 }
 
-// const generatenewtoken = async (req,res,next)=>{
-//     try{
-//         const {accesskey} = req.query;
-//         const isuser = await con.promise().query('select * from users where access_key = ?',[accesskey]);
-//         if(isuser[0].length === 0) return res.send("token not valid");
-//         let update_accesskey = random(12);
-//         const update_data = await con.promise().query('update users set access_key =?,created_time = now() where access_key =?',[update_accesskey,accesskey]);
-//         res.send(`<a href="http://localhost:9013/password/">Change Password</a>`);
-//     }catch(err){
-//         console.log(err);
-//     }
-// }
+const generatenewtoken = async (req,res,next)=>{
+    try{
+        const {accesskey,id} = req.query;
+        const isuser = await con.promise().query('select * from users where access_key = ?',[accesskey]);
+        result = isuser[0][0]
+        if(isuser[0].length === 0) return res.send("token not valid");
+        let update_accesskey = random(12);
+        const update_data = await con.promise().query('update users set access_key =?,created_time = now() where access_key = ?',[update_accesskey,accesskey]);
+        res.send(`<a href="http://localhost:9013/password/?accesskey=${update_accesskey}&id=${result.id}">Change Password</a>`);
+    }catch(err){
+        console.log(err);
+    }
+}
 
 const home = async (req,res)=>{
     try {
@@ -166,14 +167,14 @@ const home = async (req,res)=>{
 const logout = async (req,res)=>{
     try{
         res.clearCookie('token');
-        res.render("form");
+        res.render("login");
     }catch(err){
         res.send(err);
     }
 }
 
 
-module.exports = { postregister, postlogin, getpassword,postpassword,getlogin,getregister,getverifyemail,postverifyemail,home,logout};
+module.exports = { postregister, postlogin, getpassword,postpassword,getlogin,getregister,getverifyemail,postverifyemail,generatenewtoken,home,logout};
 
 
 
