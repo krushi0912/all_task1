@@ -77,7 +77,7 @@ const postpassword = async (req,res)=>{
         if (password === retype_password) {
             password = password + salt;
             let md5password = md5(password);
-            sql2 = 'update users set _password = ? where id = ? and access_key = ?';
+            sql2 = 'update users set _password = ?,created_time=now() where id = ? and access_key = ?';
             await con.promise().query(sql2, [md5password, id, accesskey]);
             res.json({ msg: "hello" });
         }
@@ -113,6 +113,48 @@ const postlogin = async (req,res)=>{
     }
 }
 
+const getverifyemail = async (req,res)=>{
+    try{
+        res.render("verifyemail");
+    }catch(err){
+        res.send(err);
+    }
+}
+const postverifyemail = async (req,res)=>{
+    try{
+        email = req.body.Email_id;
+
+    sql2 = `update users set salt = ? , access_key = ? where Email_id = ?`;
+    // console.log(random(4));
+    await con.promise().query(sql2, [random(4), random(12), email]);
+
+    sql = "select * from users where Email_id = ?";
+    data = await con.promise().query(sql, [email]);
+    result = data[0][0];
+
+    if (data[0].length !== 0) {
+        res.render("newlink", { result });
+    } else {
+        res.json({ msg: "You are not Registered User." })
+    }
+    }catch(err){
+        res.send(err);
+    }
+}
+
+// const generatenewtoken = async (req,res,next)=>{
+//     try{
+//         const {accesskey} = req.query;
+//         const isuser = await con.promise().query('select * from users where access_key = ?',[accesskey]);
+//         if(isuser[0].length === 0) return res.send("token not valid");
+//         let update_accesskey = random(12);
+//         const update_data = await con.promise().query('update users set access_key =?,created_time = now() where access_key =?',[update_accesskey,accesskey]);
+//         res.send(`<a href="http://localhost:9013/password/">Change Password</a>`);
+//     }catch(err){
+//         console.log(err);
+//     }
+// }
+
 const home = async (req,res)=>{
     try {
         res.render("home")
@@ -122,7 +164,7 @@ const home = async (req,res)=>{
 }
 
 
-module.exports = { postregister, postlogin, getpassword,postpassword,getlogin,getregister,home};
+module.exports = { postregister, postlogin, getpassword,postpassword,getlogin,getregister,getverifyemail,postverifyemail,home};
 
 
 
