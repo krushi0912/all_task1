@@ -10,8 +10,6 @@ login.route("/").get(getregister);
 login.route("/register").post(postregister);
 login.route("/password").get(getpassword).post(postpassword);
 login.route("/login").get(getlogin).post(postlogin);
-login.route("/home").get(home);
-
-
+login.route("/home").get(isvaliduser,home);
 
 module.exports = login;

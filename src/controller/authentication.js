@@ -116,8 +116,7 @@ const postlogin = async (req,res)=>{
 
 const home = async (req,res)=>{
     try {
-        if(req.cookies.token) res.render("home");
-        else res.render("login")
+        res.render("home")
     } catch (err) {
         res.send(err);
     }
