@@ -64,7 +64,7 @@ const getpassword = async (req,res)=>{
         data = await con.promise().query(`select * from users where id = ${id}`);
         var result = data[0][0];
         let diff = new Date().valueOf() - result.created_time.valueOf();
-        let min = Math.floor(diff / (1000 * 60));
+        let min = Math.floor(diff / (1000 ));
         res.render("password", { result, min, accesskey });
     } catch (err) {
         res.send(err);
@@ -163,8 +163,17 @@ const home = async (req,res)=>{
     }
 }
 
+const logout = async (req,res)=>{
+    try{
+        res.clearCookie('token');
+        res.render("form");
+    }catch(err){
+        res.send(err);
+    }
+}
 
-module.exports = { postregister, postlogin, getpassword,postpassword,getlogin,getregister,getverifyemail,postverifyemail,home};
+
+module.exports = { postregister, postlogin, getpassword,postpassword,getlogin,getregister,getverifyemail,postverifyemail,home,logout};
 
 
 

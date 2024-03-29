@@ -10,14 +10,7 @@
             background-color: rgb(140, 166, 176);
         }
 
-        h2 {
-            text-align: center;
-            color: rgb(38, 30, 30);
-            font-size: 35px;
-            text-shadow: 2px 2px rgb(247, 233, 233);
-            font-style: italic;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
+        
 
         h2::selection {
             background-color: rgb(182, 182, 215);
@@ -45,22 +38,39 @@
         a {
             font-size: 15px;
         }
+        
+         h2 {
+            text-align: center;
+            color: rgb(38, 30, 30);
+            font-size: 30px;
+            text-shadow: 2px 2px rgb(247, 233, 233);
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            position: relative;
+        }
+        h3{
+            position: absolute;
+            right: 0;
+            top:0;
+        }
     </style>
 </head>
 
 <body>
-    <h2>Tasks</h2>
-  
+        <h2>Tasks</h2>
+        <h3 style="float: right;"><a href="/logout">logout</a></h3>
     <div class="task">
         <table>
             <tr>
                 <th>NO.</th>
+                <th>Technology</th>
                 <th>Name</th>
                 <th>View</th>
             </tr>
 
             <tr>
                 <td>1</td>
+                <td rowspan="5">javascript</td>
                 <td>Dynamic Box</td>
                 <td><a href="/jstask/dynamic">dynamicbox</a></td>
             </tr>
@@ -86,6 +96,7 @@
             </tr>
             <tr>
                 <td>6</td>
+                <td rowspan="4">Pagination</td>
                 <td>Student_list with sorting</td>
                 <td><a href="/pagination/student_list">list</a></td>
             </tr>
@@ -106,6 +117,7 @@
             </tr>
             <tr>
                 <td>10</td>
+                <td rowspan="2">searching</td>
                 <td>Searching (id or any details)</td>
                 <td><a href="/search/searching">Searching</a></td>
             </tr>
@@ -116,6 +128,7 @@
             </tr>
             <tr>
                 <td>12</td>
+                <td rowspan="2">CRUD</td>
                 <td>CRUD using node (Job Application)</td>
                 <td><a href="/crud/form">CRUD using node</a></td>
             </tr>
@@ -126,6 +139,7 @@
             </tr>
             <tr>
                 <td>14</td>
+                <td rowspan="2">AJAX</td>
                 <td>Fetch API</td>
                 <td><a href="/other/fetchdata">Fetch API</a></td>
             </tr>
@@ -136,9 +150,9 @@
             </tr>
             <tr>
                 <td>16</td>
+                <td rowspan="2">timezone</td>
                 <td>Timezone</td>
                 <td colspan="1"><a href="/other/timezone">Timezone</a></td>
-
             </tr>
         </table>
     </div>
