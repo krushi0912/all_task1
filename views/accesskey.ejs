@@ -5,23 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="/login.css">   
-    <style>
-        p{
-            text-align: center;
-            font-size: 15px;
-            padding: 20px;
-        }
-        a{
-            align-items: center;
-            color: rgb(189, 234, 250);
-        }
-    </style>
 
 </head>
-<body>
+<body style="background-color: #8ca8c6;">
     <div class="msg">
-        <h2>Thank you for Your Register!</h2>
-        <p>Click here to active account : <a href="/password?id=<%=result.id%>&accesskey=<%=result.access_key%>">http://localhost:9090/password?id=<%=result.id%>&accesskey=<%=result.access_key%>"</a></p>
+        <h2 style="padding-top: 40px;">Thank you for Your Register!</h2>
+        <p style="padding-top: 20px; font-size: 15px;">Click here to active account : <a href="/password?id=<%=result.id%>&accesskey=<%=result.access_key%>">http://localhost:9090/password?id=<%=result.id%>&accesskey=<%=result.access_key%>"</a></p>
     </div>
 </body>
 </html>

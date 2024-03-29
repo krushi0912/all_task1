@@ -10,27 +10,32 @@
 
 <body>
     <h4 style="text-align: center;">Krushi Patel || 24DEV079 || 20/3/2024</h4>
-    <form action="/register" method="post" name="form" id="form" onsubmit="return formvalidation()" style="margin-top: 40px;">
-        <h3 style="margin: 20px;">Registration Form</h3>
-        <label for="firstname">Firstname </label><br>
-        <input type="text" name="firstname" id="firstname"  ><br>
-        <span id="fname"></span><br><br>
+    <div class="form">
+        <img src="/pages/register.jpg" alt="">
 
-        <label for="lastname">Lastname </label><br>
-        <input type="text" name="lastname" id="lastname"><br>
-        <span id="lname"></span><br><br>
+        <form action="/register" method="post" name="form" id="form" onsubmit="return formvalidation()"
+            style="margin-top: 40px;">
+            <h3 style="margin: 20px;">Registration Form</h3>
+            <label for="firstname">Firstname </label><br>
+            <input type="text" name="firstname" id="firstname"><br>
+            <span id="fname"></span><br><br>
 
-        <label for="contact">Contact No. </label><br>
-        <input type="text" name="contact" id="contact"><br>
-        <span id="numbermsg"></span><br><br>
+            <label for="lastname">Lastname </label><br>
+            <input type="text" name="lastname" id="lastname"><br>
+            <span id="lname"></span><br><br>
 
-        <label for="email">Email </label><br>
-        <input type="text" name="email" id="email"><br>
-        <span id="emailmsg"></span><br><br>
+            <label for="contact">Contact No. </label><br>
+            <input type="text" name="contact" id="contact"><br>
+            <span id="numbermsg"></span><br><br>
 
-        <input type="submit" value="Register" name="register" style="margin-bottom: 20px;">
-        <p>Already Registered? <a href="/login" style="font-size: 18px;">Login</a></p>
-    </form>
+            <label for="email">Email </label><br>
+            <input type="text" name="email" id="email"><br>
+            <span id="emailmsg"></span><br><br>
+
+            <input type="submit" value="Register" name="register" style="margin-bottom: 20px;">
+            <p>Already Registered? <a href="/login" style="font-size: 18px;">Login</a></p>
+        </form>
+    </div>
     <div class="login">
     </div>
 

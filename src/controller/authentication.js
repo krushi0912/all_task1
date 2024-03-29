@@ -103,7 +103,7 @@ const postlogin = async (req,res)=>{
             if (result._password === mdpass) {
                 const token = jwt.sign({ Email_id }, `logindata`, { expiresIn: '1h' })
                 res.cookie('token', token, { expires: new Date(Date.now() + 900000), httpOnly: true });
-                res.json({ msg: "welcome!" });
+                res.json({ msg: "welcome!",result:result });
             } else {
                 res.json({ msg: "Email or Password was wrong!!" });
             }

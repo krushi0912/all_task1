@@ -61,11 +61,24 @@
 <body>
     <h4 style="text-align: center;">Krushi Patel|| 29/04/2024</h4>
 
+    
+
     <form action="/pagination/dynamic_grid?page=1" method="get">
         <label for="textquery">Query:</label>
         <input type="text" style="width: 30%; height: 30px;" name="textquery"><br><br>
         <input type="submit" value="search"> <br>
     </form>
+
+    <table style="width: 200px;">
+        
+        <tr><th>Table Name</th></tr>
+        <tr><td>student_master</td></tr>
+        <tr><td>attendance_master</td></tr>
+        <tr><td>exam_result</td></tr>
+        <tr><td>exam_type</td></tr>
+        <tr><td>subject_master</td></tr>
+    
+</table>
 
     <% if(result.length !=0){%>
             <p>Query is :<%=sql%></p>
