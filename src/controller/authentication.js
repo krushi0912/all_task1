@@ -144,7 +144,7 @@ const postverifyemail = async (req,res)=>{
 
 const generatenewtoken = async (req,res,next)=>{
     try{
-        const {accesskey,id} = req.query;
+        const {accesskey} = req.query;
         const isuser = await con.promise().query('select * from users where access_key = ?',[accesskey]);
         result = isuser[0][0]
         if(isuser[0].length === 0) return res.send("token not valid");
