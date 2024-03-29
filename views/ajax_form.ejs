@@ -233,7 +233,6 @@
 
             <label for="dob">Date of Birth : </label>
            <input type="text" name="dob" id="dob" value="<%=(result && result.Date_of_Birth) ? JSON.stringify(result.Date_of_Birth).slice(1,11) : ' ' %>">
-           <span id="dobmsg1" style="color: black;">yyyy-mm-dd</span>
             <span class="dobmsg"></span>
 
             <label for="zipcode" style="margin-left: 60px;">Zipcode :</label>
@@ -575,13 +574,14 @@
             x[n].className += " active";
         }
 
+        work = 0
         function plus_work() {
             row1 = document.getElementsByClassName("row1")[0];
             div = document.createElement("div");
             div.setAttribute("class", "experience")
             input1 = row1.lastElementChild.getElementsByTagName("input");
             if (row1.lastElementChild) {
-                for (let i = 1; i < input1.length; i++) {
+                for (let i = 0; i < input1.length; i++) {
                     workmsg = document.getElementById("workmsg");
                     if (input1[i].value == "") {
                         workmsg.innerHTML = "ALL feild required!";
@@ -589,21 +589,24 @@
                     }
                 }
             }
-
             div.innerHTML = `
                     <label for="companyname" style="margin-left: 50px;">Company name </label>
                     <input type="text" name="companyname[]" id="companyname">
                     <label for="work_designation" style="margin-left: 50px;">Designation </label>
-                    <input type="text" name="work_designation[]" id="work_designation"><br><br>
+                    <input type="text" name="work_designation[]" id="work_designation">
                     <label for="fromdate" style="margin-left: 50px;">From </label>
                     <input type="text" name="fromdate[]" id="fromdate">
                     <label for="todate" style="margin-left: 50px;">To </label>
                     <input type="text" name="todate[]" id="todate"><br><br><br>`;
-            row1.appendChild(div);
+            work++;
+           row1.appendChild(div);
         }
         function minus_work() {
-            row1 = document.getElementsByClassName("row1");
-            row1[0].removeChild(row1[0].lastElementChild);
+            if(work>0){
+                row1 = document.getElementsByClassName("row1");
+                row1[0].removeChild(row1[0].lastElementChild);
+            }
+            work--;
         }
 
         education = 0;
@@ -614,7 +617,7 @@
             input1 = edu.lastElementChild.getElementsByTagName("input");
 
             if (edu.lastElementChild) {
-                for (let i = 1; i < input1.length; i++) {
+                for (let i = 0; i < input1.length; i++) {
                     educ = document.getElementById("educ");
                     if (input1[i].value == "") {
                         educ.innerHTML = "ALL feild required!";
@@ -624,32 +627,32 @@
             }
 
             div.innerHTML = `
-            <label for="sscboard" style="margin-left: 40px;">Cource </label>
+                    <label for="sscboard" style="margin-left: 40px;">Cource </label>
                     <select name="cource[]">
-                        <option value="ssc" selected>SSC</option>
+                        <option value="ssc">SSC</option>
                         <option value="hsc">HSC</option>
                         <option value="Degree">Degree</option>
                         <option value="master">Master</option>
                     </select>
                     <label for="board" style="margin-left: 40px;">Board/University</label>
-                    <input type="text" name="board[]" id="board"><br><br>
+                    <input type="text" name="board[]" id="board">
                     <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
                     <input type="text" name="passingyear[]" id="passingyear">
                     <label for="percentage" style="margin-left: 40px;">Percentage </label>
                     <input type="text" name="percentage[]" id="percentage">
-                    <span id="educ"></span>
                     `;
             education++;
             edu.appendChild(div);
         }
         function minus_edu() {
-            if (education > 0) {
+            if(education>0){
                 edu = document.getElementsByClassName("edu");
                 edu[0].removeChild(edu[0].lastElementChild);
                 education--;
             }
         }
-
+        
+        reference=0
         function plus_ref() {
             row = document.getElementsByClassName("row")[0];
             div = document.createElement("div");
@@ -657,7 +660,7 @@
             input1 = row.lastElementChild.getElementsByTagName("input");
             console.log(input1);
             if (row.lastElementChild) {
-                for (let i = 1; i < input1.length; i++) {
+                for (let i = 0; i < input1.length; i++) {
                     refmsg = document.getElementById("refmsg");
                     if (input1[i].value == "") {
                         refmsg.innerHTML = "ALL feild required!";
@@ -673,12 +676,17 @@
                     <input type="text" name="ref_contact[]" id="ref_contact">
                     <label for="ref_relation" style="margin-left: 70px;">Relation </label>
                     <input type="text" name="ref_relation[]" id="ref_relation"><br><br><br>`;
+            reference++;
             row.appendChild(div);
         }
         function minus_ref() {
-            row = document.getElementsByClassName("row");
-            row[0].removeChild(row[0].lastElementChild);
+            if(reference>0){
+                row = document.getElementsByClassName("row");
+                row[0].removeChild(row[0].lastElementChild);
+            }
+            reference--;
         }
+
 
         function validateform() {
             let input = document.getElementsByTagName("input");

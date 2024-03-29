@@ -204,6 +204,7 @@
                     </select>
                     <label for="board" style="margin-left: 40px;">Board/University</label>
                     <input type="text" name="board[]" id="board">
+                    
                     <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
                     <input type="text" name="passingyear[]" id="passingyear" placeholder="2000">
                     <label for="percentage" style="margin-left: 40px;">Percentage </label>
@@ -415,6 +416,7 @@
     </form>
 
     <script>
+        work = 0
         function plus_work() {
             row1 = document.getElementsByClassName("row1")[0];
             div = document.createElement("div");
@@ -438,12 +440,15 @@
                     <input type="text" name="fromdate[]" id="fromdate">
                     <label for="todate" style="margin-left: 50px;">To </label>
                     <input type="text" name="todate[]" id="todate"><br><br><br>`;
-            row1.appendChild(div);
+            work++;
+           row1.appendChild(div);
         }
-        
         function minus_work() {
-            row1 = document.getElementsByClassName("row1");
-            row1[0].removeChild(row1[0].lastElementChild);
+            if(work>0){
+                row1 = document.getElementsByClassName("row1");
+                row1[0].removeChild(row1[0].lastElementChild);
+            }
+            work--;
         }
 
         education = 0;
@@ -482,13 +487,14 @@
             edu.appendChild(div);
         }
         function minus_edu() {
-            if(education>3){
+            if(education>0){
                 edu = document.getElementsByClassName("edu");
                 edu[0].removeChild(edu[0].lastElementChild);
                 education--;
             }
         }
-
+        
+        reference=0
         function plus_ref() {
             row = document.getElementsByClassName("row")[0];
             div = document.createElement("div");
@@ -512,11 +518,15 @@
                     <input type="text" name="ref_contact[]" id="ref_contact">
                     <label for="ref_relation" style="margin-left: 70px;">Relation </label>
                     <input type="text" name="ref_relation[]" id="ref_relation"><br><br><br>`;
+            reference++;
             row.appendChild(div);
         }
         function minus_ref() {
-            row = document.getElementsByClassName("row");
-            row[0].removeChild(row[0].lastElementChild);
+            if(reference>0){
+                row = document.getElementsByClassName("row");
+                row[0].removeChild(row[0].lastElementChild);
+            }
+            reference--;
         }
 
         function validateform() {
@@ -526,7 +536,7 @@
             console.log(input);
             for (let i = 0; i < input.length; i++) {
                 const x = document.forms["form"][input[i].name];
-                // console.log(x.name);
+                console.log(x.name);
 
                 if (x.name == "firstname") {
                     fname = document.getElementById("fname");
