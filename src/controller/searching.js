@@ -25,7 +25,7 @@ const searching = async (req, res) => {
 
     const key = Object.keys(req.query);
     key.forEach((k) => {
-        console.log(k);
+        // console.log(k);
         if (!sql.includes('where')) sql += ' where';
         if (k === 'id' && k != 'page') sql += ` ${k} = "${req.query[k]}"`;
         if (req.query[k] && k != 'operate' && k != 'id' && k != 'page') sql += ` ${k} = "${req.query[k]}" ${req.query['operate']}`;
@@ -34,7 +34,6 @@ const searching = async (req, res) => {
     if (req.query['operate'] === 'and') data = sql.slice(0, -4);
     if (req.query['operate'] === 'or') data = sql.slice(0, -3);
     if (!data && p != 1) sql = sql.slice(0, -5);
-    console.log(sql);
 
     data ? con.query(data, (err, result) => {
         if (err) console.log(err);
@@ -108,7 +107,7 @@ const delimeter_search = async (req, res) => {
             if (e.charAt(0) == '#') gen.push(`gender like '%${e.slice(1)}%'`);
             if (e.charAt(0) == ':') citycode.push(`city like '%${e.slice(1)}%'`);
         });
-        console.log(fname);
+        // console.log(fname);
         if (fname.length > 0) sql += fname.join(" OR ") + " AND ";
         if (lname.length > 0) sql += lname.join(" OR ") + " AND ";
         if (emailid.length > 0) sql += emailid.join(" OR ") + " AND ";
