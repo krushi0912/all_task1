@@ -267,7 +267,6 @@ const updatedata = async (req, res) => {
             await con.promise().query(sql4, [gujarati, g_r, g_w, g_s, lang_id[2]]);
         }
 
-        console.log(tech_id[0]);
         let sql5 = `update technology set tech_id = ?,tech_level=? where e_id =${req.params.id} and id=?`;
         if (php) await con.promise().query(sql5, [php, tech_php, tech_id[0]]);
         if (mysql) await con.promise().query(sql5, [mysql, tech_mysql, tech_id[1]]);
