@@ -60,16 +60,16 @@
     <h3>month is : <%=m%>
     </h3>
     <div class="container">
-        <a href="/pagination/attendance_report?page=1&<%=m%>" <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
+        <a href="/pagination/attendance_report?page=1&month=<%=m%>" <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
                     class="fa-solid fa-angles-left"></i></a>
-        <a href="/pagination/attendance_report?page=<%=Number(p)-1 %>&<%=m%>" <%if(Number(p)==1){%>onclick='return false;'<%}%> ><i
+        <a href="/pagination/attendance_report?page=<%=Number(p)-1 %>&month=<%=m%>" <%if(Number(p)==1){%>onclick='return false;'<%}%> ><i
                     class="fa-solid fa-angle-left"></i></a>
         <div class="page">
             <%=p%>
         </div>
-        <a href="/pagination/attendance_report?page=<%=Number(p)+1 %>&<%=m%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
+        <a href="/pagination/attendance_report?page=<%=Number(p)+1 %>&month=<%=m%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
                     class="fa-solid fa-angle-right"></i></a>
-        <a href="/pagination/attendance_report?page=<%=lastpage%>&<%=m%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
+        <a href="/pagination/attendance_report?page=<%=lastpage%>&month=<%=m%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
                     class="fa-solid fa-angles-right"></i></a>
     </div>
 </body>

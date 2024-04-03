@@ -5,8 +5,10 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const con = require('../config/connect');
+const dotenv = require('dotenv');
 
 var app = express();
+dotenv.config();
 app.use(cookieParser())
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,16 +24,16 @@ function random(n) {
     return salt;
 }
 
-const getregister = async (req,res)=>{
+const getregister = async (req, res) => {
     try {
-        if(req.cookies.token) res.render("home");
-        else res.render("form")
+        if (req.cookies.token) res.render("home_page");
+        else res.render("register_form")
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 }
 
-const postregister = async (req,res)=>{
+const postregister = async (req, res) => {
     try {
 
         var { firstname, lastname, contact, email } = req.body;
@@ -53,25 +55,25 @@ const postregister = async (req,res)=>{
 
         res.render("accesskey", { result });
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 }
 
-const getpassword = async (req,res)=>{
+const getpassword = async (req, res) => {
     try {
         var id = req.query.id;
         var accesskey = req.query.accesskey;
         data = await con.promise().query(`select * from users where id = ${id}`);
         var result = data[0][0];
         let diff = new Date().valueOf() - result.created_time.valueOf();
-        let min = Math.floor(diff / (1000*60));
-        res.render("password", { result, min, accesskey });
+        let min = Math.floor(diff / (1000 * 60));
+        res.render("password_form", { result, min, accesskey });
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 }
 
-const postpassword = async (req,res)=>{
+const postpassword = async (req, res) => {
     try {
         var { salt, id, accesskey, password, retype_password } = req.body;
         if (password === retype_password) {
@@ -82,14 +84,18 @@ const postpassword = async (req,res)=>{
             res.json({ msg: "hello" });
         }
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 }
 
-const getlogin = async (req,res)=>{
-    res.render("login");
+const getlogin = async (req, res) => {
+    try {
+        res.render("login_form");
+    } catch (err) {
+        console.log(err);
+    }
 }
-const postlogin = async (req,res)=>{
+const postlogin = async (req, res) => {
     try {
         var { Email_id, password } = req.body;
         sql = 'select * from users where Email_id = ?';
@@ -101,9 +107,9 @@ const postlogin = async (req,res)=>{
         else {
             mdpass = md5(password + result.salt);
             if (result._password === mdpass) {
-                const token = jwt.sign({ Email_id }, `logindata`, { expiresIn: '1h' })
-                res.cookie('token', token, { expires: new Date(Date.now() + 900000), httpOnly: true });
-                res.json({ msg: "welcome!",result:result });
+                const token = jwt.sign({ Email_id }, process.env.secretkey, { expiresIn: '1h' })
+                res.cookie('token', token, { expires: new Date(Date.now() + 3600000), httpOnly: true });
+                res.json({ msg: "welcome!", result: result });
             } else {
                 res.json({ msg: "Email or Password was wrong!!" });
             }
@@ -113,68 +119,68 @@ const postlogin = async (req,res)=>{
     }
 }
 
-const getverifyemail = async (req,res)=>{
-    try{
-        res.render("verifyemail");
-    }catch(err){
-        res.send(err);
+const getverifyemail = async (req, res) => {
+    try {
+        res.render("verifyemail_form");
+    } catch (err) {
+        console.log(err);
     }
 }
-const postverifyemail = async (req,res)=>{
-    try{
+const postverifyemail = async (req, res) => {
+    try {
         email = req.body.Email_id;
 
-    sql2 = `update users set salt = ? , access_key = ? where Email_id = ?`;
-    // console.log(random(4));
-    await con.promise().query(sql2, [random(4), random(12), email]);
+        sql2 = `update users set salt = ? , access_key = ? where Email_id = ?`;
+        // console.log(random(4));
+        await con.promise().query(sql2, [random(4), random(12), email]);
 
-    sql = "select * from users where Email_id = ?";
-    data = await con.promise().query(sql, [email]);
-    result = data[0][0];
+        sql = "select * from users where Email_id = ?";
+        data = await con.promise().query(sql, [email]);
+        result = data[0][0];
 
-    if (data[0].length !== 0) {
-        res.render("newlink", { result });
-    } else {
-        res.json({ msg: "You are not Registered User." })
-    }
-    }catch(err){
-        res.send(err);
-    }
-}
-
-const generatenewtoken = async (req,res,next)=>{
-    try{
-        const {accesskey} = req.query;
-        const isuser = await con.promise().query('select * from users where access_key = ?',[accesskey]);
-        result = isuser[0][0]
-        if(isuser[0].length === 0) return res.send("token not valid");
-        let update_accesskey = random(12);
-        const update_data = await con.promise().query('update users set access_key =?,created_time = now() where access_key = ?',[update_accesskey,accesskey]);
-        res.send(`<a href="http://localhost:9013/password/?accesskey=${update_accesskey}&id=${result.id}">Change Password</a>`);
-    }catch(err){
+        if (data[0].length !== 0) {
+            res.render("newlink", { result });
+        } else {
+            res.json({ msg: "You are not Registered User." })
+        }
+    } catch (err) {
         console.log(err);
     }
 }
 
-const home = async (req,res)=>{
+const generatenewtoken = async (req, res, next) => {
     try {
-        res.render("home")
+        const { accesskey } = req.query;
+        const isuser = await con.promise().query('select * from users where access_key = ?', [accesskey]);
+        result = isuser[0][0]
+        if (isuser[0].length === 0) return res.send("token not valid");
+        let update_accesskey = random(12);
+        const update_data = await con.promise().query('update users set access_key =?,created_time = now() where access_key = ?', [update_accesskey, accesskey]);
+        res.send(`<a href="http://localhost:9013/password/?accesskey=${update_accesskey}&id=${result.id}">Change Password</a>`);
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 }
 
-const logout = async (req,res)=>{
-    try{
+const home = async (req, res) => {
+    try {
+        res.render("home_page")
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+const logout = async (req, res) => {
+    try {
         res.clearCookie('token');
-        res.render("login");
-    }catch(err){
-        res.send(err);
+        res.render("login_form");
+    } catch (err) {
+        console.log(err);
     }
 }
 
 
-module.exports = { postregister, postlogin, getpassword,postpassword,getlogin,getregister,getverifyemail,postverifyemail,generatenewtoken,home,logout};
+module.exports = { postregister, postlogin, getpassword, postpassword, getlogin, getregister, getverifyemail, postverifyemail, generatenewtoken, home, logout };
 
 
 

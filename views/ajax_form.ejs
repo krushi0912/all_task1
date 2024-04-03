@@ -482,12 +482,12 @@
 
             <label for="location" style="margin-left: 40px;">Prefered location</label>
             <select name="location" id="location">
-                <option value="ahmedabad" <%=result4.Prefered_location==="Ahmedabad" ? 'selected' : '' %>>Ahmedabad
+                <option value="ahmedabad" <%=result4.prefered_location==="ahmedabad" ? 'selected' : '' %>>Ahmedabad
                 </option>
-                <option value="banglore" <%=result4.Prefered_location==="Banglore" ? 'selected' : '' %>>Banglore
+                <option value="banglore" <%=result4.prefered_location==="banglore" ? 'selected' : '' %>>Banglore
                 </option>
-                <option value="pune" <%=result4.Prefered_location==="Pune" ? 'selected' : '' %>>Pune</option>
-                <option value="chennai" <%=result4.Prefered_location==="Chennai" ? 'selected' : '' %>>Chennai</option>
+                <option value="pune" <%=result4.prefered_location==='pune' ? 'selected' : '' %>>Pune</option>
+                <option value="chennai" <%=result4.prefered_location==="chennai" ? 'selected' : '' %>>Chennai</option>
             </select>
 
             <label for="notice" style="margin-left: 40px;">Notice period</label>
@@ -534,7 +534,6 @@
         var currenttab = 0;
         showtab(currenttab);
         function showtab(n) {
-            console.log(currenttab);
             tab = document.querySelectorAll(".tab");
             prev = document.querySelector("#prevBtn");
             next = document.querySelector("#nextBtn");
@@ -581,7 +580,7 @@
             div.setAttribute("class", "experience")
             input1 = row1.lastElementChild.getElementsByTagName("input");
             if (row1.lastElementChild) {
-                for (let i = 0; i < input1.length; i++) {
+                for (let i = 1; i < input1.length; i++) {
                     workmsg = document.getElementById("workmsg");
                     if (input1[i].value == "") {
                         workmsg.innerHTML = "ALL feild required!";
@@ -593,7 +592,7 @@
                     <label for="companyname" style="margin-left: 50px;">Company name </label>
                     <input type="text" name="companyname[]" id="companyname">
                     <label for="work_designation" style="margin-left: 50px;">Designation </label>
-                    <input type="text" name="work_designation[]" id="work_designation">
+                    <input type="text" name="work_designation[]" id="work_designation"><br><br>
                     <label for="fromdate" style="margin-left: 50px;">From </label>
                     <input type="text" name="fromdate[]" id="fromdate">
                     <label for="todate" style="margin-left: 50px;">To </label>
@@ -635,7 +634,7 @@
                         <option value="master">Master</option>
                     </select>
                     <label for="board" style="margin-left: 40px;">Board/University</label>
-                    <input type="text" name="board[]" id="board">
+                    <input type="text" name="board[]" id="board"><br><br>
                     <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
                     <input type="text" name="passingyear[]" id="passingyear">
                     <label for="percentage" style="margin-left: 40px;">Percentage </label>
@@ -660,7 +659,7 @@
             input1 = row.lastElementChild.getElementsByTagName("input");
             console.log(input1);
             if (row.lastElementChild) {
-                for (let i = 0; i < input1.length; i++) {
+                for (let i = 1; i < input1.length; i++) {
                     refmsg = document.getElementById("refmsg");
                     if (input1[i].value == "") {
                         refmsg.innerHTML = "ALL feild required!";

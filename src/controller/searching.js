@@ -91,7 +91,6 @@ const delimeter_search = async (req, res) => {
             }
         }
 
-        console.log(arr);
 
         var fname = [];
         var lname = [];
@@ -116,7 +115,6 @@ const delimeter_search = async (req, res) => {
 
         if (sql.includes('where')) sql = sql.slice(0, -4);
 
-        console.log(sql);
         con.query(sql, (err, result) => {
             if (err) console.log(err);
             else {

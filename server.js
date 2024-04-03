@@ -1,17 +1,17 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-const md5 = require('md5');
+// const md5 = require('md5');
 const path = require('path');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const l = require('./src/routes/route_authentication');
-const con = require('./src/config/connect');
+// const con = require('./src/config/connect');
 const js = require('./src/routes/route_javascript');
 const pagination = require('./src/routes/route_pagination');
 const search = require('./src/routes/route_searching');
-const crud = require('./src/routes/route_CRUD');
+const crud = require('./src/routes/route_crud');
 const ajax_crud = require('./src/routes/route_ajaxcrud');
-const other = require('./src/routes/route_others');
+const other = require('./src/routes/route_fetchapi');
 
 var app = express();
 app.use(cookieParser())

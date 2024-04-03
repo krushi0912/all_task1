@@ -99,7 +99,6 @@
             }
         }
 
-
         function rowplus() {
             let table = document.getElementsByTagName("table");
             let tr = table[0].getElementsByTagName("tr");
@@ -117,24 +116,6 @@
                 table[0].removeChild(table[0].lastChild);
             }
         }
-
-        // using insert row
-
-        /* function rowplus() {
-            let table = document.getElementsByTagName("table");
-            let tr = table[0].getElementsByTagName("tr");
-            td = tr[0].getElementsByTagName("td");
-            let row = table[0].insertRow();
-            for(i=0 ; i<td.length ; i++){
-                let column = row.insertCell(i);
-            }
-        }
-        function rowminus(){
-            let table = document.getElementsByTagName("table");
-            let tr = table[0].getElementsByTagName("tr");
-            document.getElementById('table').deleteRow(0);
-        }
-        */
     </script>
 </body>
 

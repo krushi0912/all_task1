@@ -52,18 +52,15 @@
     </form>
 
     <div class="container">
-        <%if(Number(p)!=1){%>
-        <a href="?page=1&select=<%=order_by%>&sort=<%=order%>" ><i
+       
+        <a href="?page=1&select=<%=order_by%>&sort=<%=order%>"  <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
                     class="fa-solid fa-angles-left"></i></a>
-        <a href="?page=<%=Number(p)-1 %>&select=<%=order_by%>&sort=<%=order%>" ><i class="fa-solid fa-angle-left"></i></a>
-        <%}%> 
+        <a href="?page=<%=Number(p)-1 %>&select=<%=order_by%>&sort=<%=order%>"  <%if(Number(p)==1){%>onclick='return false;' <%}%>><i class="fa-solid fa-angle-left"></i></a>
         <div class="page">
             <%=p%>
         </div>
-        <%if(Number(p)!=lastpage){%>
-        <a href="?page=<%=Number(p)+1 %>&select=<%=order_by%>&sort=<%=order%>"><i class="fa-solid fa-angle-right"></i></a>
-        <a href="?page=10&select=<%=order_by%>&sort=<%=order%>" ><i class="fa-solid fa-angles-right"></i></a>
-            <%}%> 
+        <a href="?page=<%=Number(p)+1 %>&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i class="fa-solid fa-angle-right"></i></a>
+        <a href="?page=10&select=<%=order_by%>&sort=<%=order%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i class="fa-solid fa-angles-right"></i></a>
     </div>
 </body>
 

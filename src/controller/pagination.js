@@ -61,7 +61,7 @@ const exam_report = (req, res) => {
     con.query(sql, (err, result) => {
         if (err) console.log(err);
         else
-            res.render('examresultlist', { result, p, lastpage });
+            res.render('examresult_list', { result, p, lastpage });
     })
 }
 
@@ -91,25 +91,25 @@ const dynamic_grid = (req, res) => {
             con.query(sql, (err, result) => {
                 if (err) res.send(err);
                 else {
-                    const limit = 30;
+                    const limit = 20;
                     const lastpage = Math.ceil(result.length / limit);
                     const offset = (Number(p) - 1) * limit;
                     if (sql.includes('limit')) {
                         const key = Object.keys(result[0]);
-                        res.render('dynamicgrid', { result, key, sql, p, lastpage });
+                        res.render('dynamic_grid', { result, key, sql, p, lastpage });
                     } else {
                         var sql2 = sql + ` limit ${limit} offset ${offset}`;
                         const key = Object.keys(result[0]);
                         con.query(sql2, (err, result) => {
                             if (err) res.send(err);
                             else
-                                res.render('dynamicgrid', { result, key, sql, sql2, p, lastpage });
+                                res.render('dynamic_grid', { result, key, sql, sql2, p, lastpage });
                         })
                     }
                 }
             })
         } else {
-            res.render('dynamicgrid', { result });
+            res.render('dynamic_grid', { result });
         }
     } catch (err) {
         res.send(err);

@@ -34,21 +34,20 @@
 
 <body>
     <div class="container">
-        <%if(Number(p)!=1){ %>
-        <a href="/pagination/exam_report?page=1"><i
+       
+        <a href="/pagination/exam_report?page=1" <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
                     class="fa-solid fa-angles-left"></i></a>
-        <a href="/pagination/exam_report?page=<%=Number(p)-1 %>"><i
+        <a href="/pagination/exam_report?page=<%=Number(p)-1 %>" <%if(Number(p)==1){%>onclick='return false;' <%}%> ><i
                     class="fa-solid fa-angle-left"></i></a>
-        <%}%>
         <div class="page">
             <%=p%>
         </div>
-        <%if(Number(p)!=lastpage){%>
-        <a href="/pagination/exam_report?page=<%=Number(p)+1 %>"><i
+
+        <a href="/pagination/exam_report?page=<%=Number(p)+1 %>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
                     class="fa-solid fa-angle-right"></i></a>
-        <a href="/pagination/exam_report?page=<%=lastpage%>"><i
+        <a href="/pagination/exam_report?page=<%=lastpage%>" <%if(Number(p)==lastpage){%>onclick='return false;' <%}%>><i
                     class="fa-solid fa-angles-right"></i></a>
-        <%}%>
+
     </div>
 </body>
 

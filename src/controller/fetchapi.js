@@ -21,7 +21,7 @@ const fetchdata = async (req, res) => {
 
 const fetchuser = async (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, '../../public','pages','Fetchapi_user.html'))
+        res.sendFile(path.join(__dirname, '../../public','pages','fetchapi_user.html'))
     } catch (error) {
         console.log(error);
     }

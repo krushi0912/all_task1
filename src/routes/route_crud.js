@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const con = require('../config/connect');
-const {getform,submitform,employeedata,updatedata}= require('../controller/CRUD');
+const {getform,submitform,employeedata,updatedata}= require('../controller/crud');
 const isvaliduser = require('../middleware/token');
 const crud = express.Router();
 

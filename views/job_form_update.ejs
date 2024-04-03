@@ -246,32 +246,32 @@
                     <tr>
                         <td><input type="hidden" name="lang_id[]" value="<%=hindi.length!=0 && hindi[0].id%>"></td>
                         <td><input type="checkbox" name="hindi" id="hindi"  <%=hindi.length!=0 && hindi[0].languages === 8 ?'checked' : ''%>><label for="hindi">Hindi</label></td>
-                        <td><input type="checkbox" name="h_r" id="h_r" style="margin-left: 30px;" <%=hindi[0].r === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="h_r" id="h_r" style="margin-left: 30px;" <%=hindi.length!=0 && hindi[0].r === 1 ? 'checked' : ''%>><label
                                 for="h_r">read</label></td>
-                        <td><input type="checkbox" name="h_w" id="h_w" style="margin-left: 30px;" <%=hindi[0].w === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="h_w" id="h_w" style="margin-left: 30px;" <%=hindi.length!=0 && hindi[0].w === 1 ? 'checked' : ''%>><label
                                 for="h_w">write</label></td>
-                        <td><input type="checkbox" name="h_s" id="h_s" style="margin-left: 30px;" <%=hindi[0].s === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="h_s" id="h_s" style="margin-left: 30px;" <%=hindi.length!=0 && hindi[0].s === 1 ? 'checked' : ''%>><label
                                 for="h_s">speak</label></td>
                     </tr>
                     <tr>
                         <td><input type="hidden" name="lang_id[]" value="<%=english.length!=0 && english[0].id%>"></td>
                         <td><input type="checkbox" name="english" id="english" <%=english.length!=0 && english[0].languages === 9 ? 'checked' : ''%>><label for="english">English</label></td>
-                        <td><input type="checkbox" name="e_r" id="e_r" style="margin-left: 30px;" <%=english[0].r === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="e_r" id="e_r" style="margin-left: 30px;" <%=english.length!=0 && english[0].r === 1 ? 'checked' : ''%>><label
                                 for="e_r">read</label></td> 
-                        <td><input type="checkbox" name="e_w" id="e_w" style="margin-left: 30px;" <%=english[0].w === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="e_w" id="e_w" style="margin-left: 30px;" <%=english.length!=0 && english[0].w === 1 ? 'checked' : ''%>><label
                                 for="e_w">write</label></td>
-                        <td><input type="checkbox" name="e_s" id="e_s" style="margin-left: 30px;" <%=english[0].s === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="e_s" id="e_s" style="margin-left: 30px;" <%=english.length!=0 && english[0].s === 1 ? 'checked' : ''%>><label
                                 for="e_s">speak</label></td>
                     </tr>
                     <tr>
                         <td><input type="hidden" name="lang_id[]" value="<%=gujarati.length!=0 && gujarati[0].id%>"></td>
                         <td><input type="checkbox" name="gujarati" id="gujarati" <%=gujarati.length!=0 && gujarati[0].languages === 10 ? 'checked' : ''%>><label for="gujarati">Gujarati</label>
                         </td>
-                        <td><input type="checkbox" name="g_r" id="g_r" style="margin-left: 30px;" <%=gujarati[0].r === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="g_r" id="g_r" style="margin-left: 30px;" <%=gujarati.length!=0 && gujarati[0].r === 1 ? 'checked' : ''%>><label
                                 for="g_r">read</label></td>
-                        <td><input type="checkbox" name="g_w" id="g_w" style="margin-left: 30px;" <%=gujarati[0].w === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="g_w" id="g_w" style="margin-left: 30px;" <%=gujarati.length!=0 && gujarati[0].w === 1 ? 'checked' : ''%>><label
                                 for="g_w">write</label></td> 
-                        <td><input type="checkbox" name="g_s" id="g_s" style="margin-left: 30px;" <%=gujarati[0].s === 1 ? 'checked' : ''%>><label
+                        <td><input type="checkbox" name="g_s" id="g_s" style="margin-left: 30px;" <%=gujarati.length!=0 && gujarati[0].s === 1 ? 'checked' : ''%>><label
                                 for="g_s">speak</label></td>
                     </tr>
                 </table>
@@ -397,10 +397,10 @@
 
             <label for="location" style="margin-left: 40px;">Prefered location</label>
             <select name="location" id="location">
-                <option value="ahmedabad" <%=result4.Prefered_location === "Ahmedabad" ? 'selected' : '' %>>Ahmedabad</option>
-                <option value="banglore" <%=result4.Prefered_location === "Banglore" ? 'selected' : '' %>>Banglore</option>
-                <option value="pune" <%=result4.Prefered_location === "Pune" ? 'selected' : '' %>>Pune</option>
-                <option value="chennai" <%=result4.Prefered_location === "Chennai" ? 'selected' : '' %>>Chennai</option>
+                <option value="ahmedabad" <%=result4.prefered_location === "ahmedabad" ? 'selected' : '' %>>Ahmedabad</option>
+                <option value="banglore" <%=result4.prefered_location === "banglore" ? 'selected' : '' %>>Banglore</option>
+                <option value="pune" <%=result4.prefered_location === "pune" ? 'selected' : '' %>>Pune</option>
+                <option value="chennai" <%=result4.prefered_location === "chennai" ? 'selected' : '' %>>Chennai</option>
             </select>
 
             <label for="notice" style="margin-left: 40px;">Notice period</label>
