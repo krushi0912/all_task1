@@ -36,49 +36,62 @@ const student_list = (req, res) => {
 }
 
 const attendance_report = (req, res) => {
-    const p = req.query.page || 1;
-    const offset = (p - 1) * 20;
-    const lastpage = Math.ceil(200 / 20);
-    const m = req.query.month || 'december2023';
-    const y = m.slice(0, -4);
+    try {
+        const p = req.query.page || 1;
+        const offset = (p - 1) * 20;
+        const lastpage = Math.ceil(200 / 20);
+        const m = req.query.month || 'december2023';
+        const y = m.slice(0, -4);
 
-    sql = `select s.id,s.firstname,monthname(a._date) as month,count(a.ispresent)as presentDay from student_master as s
+        sql = `select s.id,s.firstname,monthname(a._date) as month,count(a.ispresent)as presentDay from student_master as s
     inner join attendance_master as a on s.id = a.stu_id where a.ispresent = 'P' group by id,month having month="${y}" order by a.stu_id limit 20 offset ${offset}`;
 
-    con.query(sql, (err, result) => {
-        if (err) console.log(err);
-        res.render('attendance', { result, p, m, lastpage });
-    })
+        con.query(sql, (err, result) => {
+            if (err) console.log(err);
+            res.render('attendance', { result, p, m, lastpage });
+        })
+
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 const exam_report = (req, res) => {
-    const p = req.query.page || 1;
-    const limit = 60;
-    const offset = (p - 1) * limit;
-    const lastpage = Math.ceil(600 / 60);
-    sql = `select e.stu_id , s.firstname ,t.exam_type , sum(e.obtain_theory_marks) as theory,sum(e.practical_obtain_marks) as practical from exam_result as e inner join student_master as s on e.stu_id = s.id inner join exam_type as t on e.e_type = t.e_id group by t.e_id , s.id order by e.stu_id limit ${limit} offset ${offset}`;
+    try {
+        const p = req.query.page || 1;
+        const limit = 60;
+        const offset = (p - 1) * limit;
+        const lastpage = Math.ceil(600 / 60);
+        sql = `select e.stu_id , s.firstname ,t.exam_type , sum(e.obtain_theory_marks) as theory,sum(e.practical_obtain_marks) as practical from exam_result as e inner join student_master as s on e.stu_id = s.id inner join exam_type as t on e.e_type = t.e_id group by t.e_id , s.id order by e.stu_id limit ${limit} offset ${offset}`;
 
-    con.query(sql, (err, result) => {
-        if (err) console.log(err);
-        else
-            res.render('examresult_list', { result, p, lastpage });
-    })
+        con.query(sql, (err, result) => {
+            if (err) console.log(err);
+            else
+                res.render('examresult_list', { result, p, lastpage });
+        })
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 const student_result = (req, res) => {
-    id = req.query.id;
-    sql = `select s.id,s.firstname,sub.sub_name,e.e_type,e.obtain_theory_marks as theory,e.practical_obtain_marks as practical
+    try {
+        id = req.query.id;
+        sql = `select s.id,s.firstname,sub.sub_name,e.e_type,e.obtain_theory_marks as theory,e.practical_obtain_marks as practical
     from student_master as s inner join exam_result as e on e.stu_id = s.id 
     inner join subject_master as sub on sub.sub_id = e.sub_id where e.stu_id = ${id};`;
 
-    sql2 = `select count(*) as attendance from attendance_master where stu_id = ${id} and ispresent = 'P';`
-    con.query(sql, (err, result) => {
-        if (err) console.log(err);
-        con.query(sql2, (err, result2) => {
+        sql2 = `select count(*) as attendance from attendance_master where stu_id = ${id} and ispresent = 'P';`
+        con.query(sql, (err, result) => {
             if (err) console.log(err);
-            res.render('reportcard', { result, result2 });
+            con.query(sql2, (err, result2) => {
+                if (err) console.log(err);
+                res.render('reportcard', { result, result2 });
+            })
         })
-    })
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 const dynamic_grid = (req, res) => {
@@ -115,4 +128,4 @@ const dynamic_grid = (req, res) => {
         res.send(err);
     }
 }
-module.exports = { student_list, attendance_report, exam_report, student_result,dynamic_grid};
+module.exports = { student_list, attendance_report, exam_report, student_result, dynamic_grid };

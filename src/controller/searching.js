@@ -12,55 +12,65 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const searching = async (req, res) => {
-    const p = req.query.page || 1;
-    const limit = 10;
-    const offset = (p - 1) * limit;
-    const lastpage = Math.ceil(200 / limit);
-    const { id, firstname, lastname, gender, city, operate } = req.query;
+    try {
+        const p = req.query.page || 1;
+        const limit = 10;
+        const offset = (p - 1) * limit;
+        const { id, firstname, lastname, gender, city, operate } = req.query;
 
-    var sql = `select * ,DATE_FORMAT(birth_date, "%d/%m/%Y") as birth_date,
-            DATE_FORMAT(created_at, "%d/%m/%Y %T") as created_at
-            from student_master`;
-    var data = "";
+        var sql = `select * ,DATE_FORMAT(birth_date, "%d/%m/%Y") as birth_date,
+                DATE_FORMAT(created_at, "%d/%m/%Y %T") as created_at
+                from student_master`;
+        var data = "";
 
-    const key = Object.keys(req.query);
-    key.forEach((k) => {
-        // console.log(k);
-        if (!sql.includes('where')) sql += ' where';
-        if (k === 'id' && k != 'page') sql += ` ${k} = "${req.query[k]}"`;
-        if (req.query[k] && k != 'operate' && k != 'id' && k != 'page') sql += ` ${k} = "${req.query[k]}" ${req.query['operate']}`;
-    });
+        const key = Object.keys(req.query);
+        key.forEach((k) => {
+            if (!sql.includes('where')) sql += ' where';
+            if (k === 'id' && k != 'page') sql += ` ${k} = "${req.query[k]}"`;
+            if (req.query[k] && k != 'operate' && k != 'id' && k != 'page') sql += ` ${k} like "%${req.query[k]}%" ${req.query['operate']}`;
+        });
 
-    if (req.query['operate'] === 'and') data = sql.slice(0, -4);
-    if (req.query['operate'] === 'or') data = sql.slice(0, -3);
-    if (!data && p != 1) sql = sql.slice(0, -5);
+        if (req.query['operate'] === 'and') data = sql.slice(0, -4);
+        if (req.query['operate'] === 'or') data = sql.slice(0, -3);
 
-    data ? con.query(data, (err, result) => {
-        if (err) console.log(err);
-        else {
-            const query2 = data + ` limit ${limit} offset ${offset}`;
-            con.query(query2, (err, result) => {
+        if (data) {
+            con.query(data, (err, result) => {
                 if (err) console.log(err);
                 else {
-                    res.render('searching', { result, p, lastpage, firstname, lastname, city, gender, operate });
+                    let records = result.length;
+                    const lastpage = Math.ceil(records / limit);
+                    const query2 = data + ` limit ${limit} offset ${offset}`;
+                    con.query(query2, (err, result) => {
+                        if (err) console.log(err);
+                        else {
+                            res.render('searching', { result, p, id, lastpage, firstname, lastname, city, gender, operate });
+                        }
+                    })
+                    // console.log(result);
                 }
             })
-            // console.log(result);
         }
-    }) :
-        con.query(sql, (err, result) => {
-            if (err) console.log(err);
-            else {
-                const query2 = sql + ` limit ${limit} offset ${offset}`;
-                con.query(query2, (err, result) => {
-                    if (err) console.log(err);
-                    else {
-                        res.render('searching', { result, p, lastpage, firstname, lastname, city, gender, operate });
-                    }
-                })
-                // console.log(result);
-            }
-        })
+        else{
+            if (req.query.page) sql = sql.slice(0, -5);
+            con.query(sql, (err, result) => {
+                if (err) console.log(err);
+                else {
+                    let records = result.length;
+                    const lastpage = Math.ceil(records / limit);
+                    const query2 = sql + ` limit ${limit} offset ${offset}`;
+                    con.query(query2, (err, result) => {
+                        if (err) console.log(err);
+                        else {
+                            res.render('searching', { result, p, id, lastpage, firstname, lastname, city, gender, operate });
+                        }
+                    })
+                    // console.log(result);
+                }
+            })
+        }
+    } catch (err) {
+        res.send(err);
+    }
 };
 
 const delimeter_search = async (req, res) => {
@@ -90,8 +100,6 @@ const delimeter_search = async (req, res) => {
                 }
             }
         }
-
-
         var fname = [];
         var lname = [];
         var emailid = [];
@@ -103,7 +111,7 @@ const delimeter_search = async (req, res) => {
             if (e.charAt(0) == '_') fname.push(`firstname like '%${e.slice(1)}%'`);
             if (e.charAt(0) == '^') lname.push(`lastname like '%${e.slice(1)}%'`);
             if (e.charAt(0) == '$') emailid.push(`email like '%${e.slice(1)}%'`);
-            if (e.charAt(0) == '#') gen.push(`gender like '%${e.slice(1)}%'`);
+            if (e.charAt(0) == '#') gen.push(`gender like '${e.slice(1)}%'`);
             if (e.charAt(0) == ':') citycode.push(`city like '%${e.slice(1)}%'`);
         });
         // console.log(fname);
