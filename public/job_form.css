@@ -1,0 +1,154 @@
+* {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-decoration: underline;
+  font-size: 18px;
+  margin: 10px 0 30px 20px;
+}
+
+.basicdetails {
+  border: 2px groove black;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.education {
+  border: 1px groove black;
+  padding: 10px;
+  position: relative;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.education .ssc {
+  padding: 20px;
+}
+
+.workexperience {
+  border: 1px groove black;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.languages {
+  border: 2px groove black;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.technologies {
+  border: 2px groove black;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.reference {
+  border: 2px groove black;
+  padding: 30px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.preference {
+  border: 2px groove black;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.flex {
+  display: flex;
+}
+
+  #submit {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 18px;
+    padding: 7px;
+    margin-left: 500px;
+  }
+
+  #reset {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 7px;
+  }
+
+span {
+  color: red;
+  font-size: 10px;
+}
+
+p {
+  color: red;
+  font-size: 13px;
+}
+
+#minus {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: rgb(46, 48, 48);
+  padding: 0 7px;
+  color: white;
+  font-size: 20px;
+}
+
+#plus {
+  position: absolute;
+  right: 45px;
+  top: 10px;
+  background-color: rgb(46, 48, 48);
+  padding: 0 6px;
+  color: white;
+  font-size: 20px;
+}
+
+select {
+  font-size: 15px;
+  background-color: rgb(227, 221, 221);
+  border-radius: 5px;
+}
+
+.tab {
+  display: none;
+  width: 80%;
+  margin: auto;
+}
+
+input[type="button"],
+input[type="submit"] {
+  padding: 9px;
+  font-size: 15px;
+  margin: 10px;
+}
+
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 20px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.step.active {
+  opacity: 1;
+  background-color: rgb(62, 60, 60);
+}
+
+#msg {
+  background-color: lightgreen;
+  text-align: center;
+}
+
