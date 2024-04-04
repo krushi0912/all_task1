@@ -42,7 +42,7 @@
             const jobdata = await new Response(params).text();
             console.log(typeof (jobdata));
 
-            let data2 = await fetch("http://localhost:9013/login", {
+            let data2 = await fetch("http://localhost:9815/login", {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/x-www-form-urlencoded'
@@ -52,7 +52,7 @@
             error = await data2.json();
             result = error.result;
             if (error.msg === "welcome!") {
-                window.location.assign("http://localhost:9013/home",{result})
+                window.location.assign("http://localhost:9815/home",{result})
                 // document.getElementById("welcome").innerHTML = `<p>Go back to <a href="/home">Home</a> Page</p>` ;
             } else {
                 document.getElementById("loginerr").innerHTML = error.msg;

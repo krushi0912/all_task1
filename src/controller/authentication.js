@@ -35,7 +35,7 @@ const getregister = async (req, res) => {
 
 const postregister = async (req, res) => {
     try {
-
+        
         var { firstname, lastname, contact, email } = req.body;
 
         sql2 = `select * from users where Email_id = ?`
@@ -156,7 +156,7 @@ const generatenewtoken = async (req, res, next) => {
         if (isuser[0].length === 0) return res.send("token not valid");
         let update_accesskey = random(12);
         const update_data = await con.promise().query('update users set access_key =?,created_time = now() where access_key = ?', [update_accesskey, accesskey]);
-        res.send(`<a href="http://localhost:9013/password/?accesskey=${update_accesskey}&id=${result.id}">Change Password</a>`);
+        res.send(`<a href="http://localhost:9815/password/?accesskey=${update_accesskey}&id=${result.id}">Change Password</a>`);
     } catch (err) {
         console.log(err);
     }

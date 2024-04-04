@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const ajax_getform = async (req, res) => {
     try {
-        result = [], result2 = [{}], result3 = [{}], result4 = [], result5 = [], hindi = [], english = [], gujarati = [], php = [{}], mysql = [{}], oracle = [{}], laravel = [{}], result7 = [{}];
+        result = [], result2 = [{}], result3 = [{}], result4 = [], result5 = [], hindi = [{}], english = [{}], gujarati = [{}], php = [{}], mysql = [{}], oracle = [{}], laravel = [{}], result7 = [{}];
         res.render("ajax_form", { result, result2, result3, result4, result5, hindi, english, gujarati, php, mysql, laravel, oracle, result7 })
     } catch (err) {
         console.log(err);

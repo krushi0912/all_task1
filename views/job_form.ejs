@@ -244,6 +244,7 @@
             <div class="languages">
                 <h3>Languages You known</h3>
                 <table>
+                    <span id="langmsg"></span> 
                     <tr>
                         <td><input type="checkbox" name="hindi" id="hindi"><label for="hindi">Hindi</label></td>
                         <td><input type="checkbox" name="h_r" id="h_r" style="margin-left: 30px;"><label
@@ -252,6 +253,7 @@
                                 for="h_w">write</label></td>
                         <td><input type="checkbox" name="h_s" id="h_s" style="margin-left: 30px;"><label
                                 for="h_s">speak</label></td>
+                                
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="english" id="english"><label for="english">English</label></td>
@@ -279,22 +281,23 @@
                 <h3>Technologies you known</h3>
                 <table>
 
+                    <span id="techmsg"></span>
                     <tr>
                         <td>
                             <input type="checkbox" name="php" id="php">
                             <label for="php">PHP</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_php" id="b-p" style="margin-left: 30px;" value="Beginer">
-                            <label for="b-p">Beginer</label>
+                            <input type="radio" name="tech_php" id="b_p" style="margin-left: 30px;" value="Beginer">
+                            <label for="b_p">Beginer</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_php" id="m-p" style="margin-left: 30px;" value="Mideator">
-                            <label for="m-p">Mideator</label>
+                            <input type="radio" name="tech_php" id="m_p" style="margin-left: 30px;" value="Mideator">
+                            <label for="m_p">Mideator</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_php" id="e-p" style="margin-left: 30px;" value="Expert">
-                            <label for="e-p">Expert</label>
+                            <input type="radio" name="tech_php" id="e_p" style="margin-left: 30px;" value="Expert">
+                            <label for="e_p">Expert</label>
                         </td>
                     </tr>
 
@@ -304,16 +307,16 @@
                             <label for="mysql">MYSQL</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_mysql" id="b-m" style="margin-left: 30px;" value="Beginer">
-                            <label for="b-m">Beginer</label>
+                            <input type="radio" name="tech_mysql" id="b_m" style="margin-left: 30px;" value="Beginer">
+                            <label for="b_m">Beginer</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_mysql" id="m-m" style="margin-left: 30px;" value="Mideator">
-                            <label for="m-m">Mideator</label>
+                            <input type="radio" name="tech_mysql" id="m_m" style="margin-left: 30px;" value="Mideator">
+                            <label for="m_m">Mideator</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_mysql" id="e-m" style="margin-left: 30px;" value="Expert">
-                            <label for="e-m">Expert</label>
+                            <input type="radio" name="tech_mysql" id="e_m" style="margin-left: 30px;" value="Expert">
+                            <label for="e_m">Expert</label>
                         </td>
                     </tr>
 
@@ -323,17 +326,17 @@
                             <label for="laravel">Laravel</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_laravel" id="b-l" style="margin-left: 30px;" value="Beginer">
-                            <label for="b-l">Beginer</label>
+                            <input type="radio" name="tech_laravel" id="b_l" style="margin-left: 30px;" value="Beginer">
+                            <label for="b_l">Beginer</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_laravel" id="m-l" style="margin-left: 30px;"
+                            <input type="radio" name="tech_laravel" id="m_l" style="margin-left: 30px;"
                                 value="Mideator">
-                            <label for="m-l">Mideator</label>
+                            <label for="m_l">Mideator</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_laravel" id="e-l" style="margin-left: 30px;" value="Expert">
-                            <label for="e-l">Expert</label>
+                            <input type="radio" name="tech_laravel" id="e_l" style="margin-left: 30px;" value="Expert">
+                            <label for="e_l">Expert</label>
                         </td>
                     </tr>
 
@@ -343,16 +346,16 @@
                             <label for="oracle">oracle</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_oracle" id="b-o" style="margin-left: 30px;" value="Beginer">
-                            <label for="b-o">Beginer</label>
+                            <input type="radio" name="tech_oracle" id="b_o" style="margin-left: 30px;" value="Beginer">
+                            <label for="b_o">Beginer</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_oracle" id="m-o" style="margin-left: 30px;" value="Mideator">
-                            <label for="m-o">Mideator</label>
+                            <input type="radio" name="tech_oracle" id="m_o" style="margin-left: 30px;" value="Mideator">
+                            <label for="m_o">Mideator</label>
                         </td>
                         <td>
-                            <input type="radio" name="tech_oracle" id="e-o" style="margin-left: 30px;" value="Expert">
-                            <label for="e-o">Expert</label>
+                            <input type="radio" name="tech_oracle" id="e_o" style="margin-left: 30px;" value="Expert">
+                            <label for="e_o">Expert</label>
                         </td>
                     </tr>
                 </table>
@@ -533,10 +536,10 @@
             let input = document.getElementsByTagName("input");
             span = document.getElementsByTagName("span");
             valid = true;
-            console.log(input);
+            
             for (let i = 0; i < input.length; i++) {
                 const x = document.forms["form"][input[i].name];
-                console.log(x.name);
+                
 
                 if (x.name == "firstname") {
                     fname = document.getElementById("fname");
@@ -651,7 +654,98 @@
                         valid = false;
                     }
                 }
+                langmsg = document.getElementById("langmsg");
+                if(x.name == "hindi"){
+                    if(hindi.checked == true){
+                        if(h_r.checked == false && h_w.checked == false && h_s.checked==false){
+                            langmsg.innerHTML = "If you select language then please select any read , write,speak";   
+                            valid = false;
+                        }
+                    }else if(h_r.checked == true || h_w.checked == true || h_s.checked==true){
+                        hindi.checked = true;
+                    }
+                }
 
+                if(x.name == "english"){
+                    if(english.checked == true){
+                        if(e_r.checked == false && e_w.checked == false && e_s.checked==false){
+                            langmsg.innerHTML = "If you select language then please select any read , write,speak";   
+                            valid = false;
+                        }
+                    }else if(e_r.checked == true || e_w.checked == true || e_s.checked==true){
+                        english.checked = true;
+                    }
+                }
+
+                if(x.name == "gujarati"){
+                    if(gujarati.checked == true){
+                        if(g_r.checked == false && g_w.checked == false && g_s.checked==false){
+                            langmsg.innerHTML = "If you select language then please select any read , write,speak"; 
+                            valid = false;
+                        }
+                    }else if(g_r.checked == true || g_w.checked == true || g_s.checked==true){
+                        gujarati.checked = true;
+                    }
+                }
+
+                techmsg = document.getElementById("techmsg");
+                if(x.name == "php"){
+                    b_p = document.getElementById("b_p");
+                    m_p = document.getElementById("m_p");
+                    e_p = document.getElementById("e_p");
+                    if(php.checked == true){
+                        if(b_p.checked == false && m_p.checked == false && e_p.checked == false){
+                            techmsg.innerHTML = "If you select technology then please select any one feild"
+                            valid=false;
+                        }
+                    }else if(b_p.checked == true || m_p.checked == true || e_p.checked == true){
+                        php.checked = true;
+                    }
+                }
+
+                if(x.name == "mysql"){
+                    b_m = document.getElementById("b_m");
+                    m_m = document.getElementById("m_m");
+                    e_m = document.getElementById("e_m");
+                    if(mysql.checked == true){
+                        if(b_m.checked == false && m_m.checked == false && e_m.checked == false){
+                            techmsg.innerHTML = "If you select technology then please select any one feild"
+                            valid=false;
+                        }
+                    }else if(b_m.checked == true || m_m.checked == true || e_m.checked == true){
+                        mysql.checked = true;
+                    }
+                }
+
+                if(x.name == "laravel"){
+                    b_l = document.getElementById("b_l");
+                    m_l = document.getElementById("m_l");
+                    e_l = document.getElementById("e_l");
+                    if(laravel.checked == true){
+                        if(b_l.checked == false && m_l.checked == false && e_l.checked == false){
+                            techmsg.innerHTML = "If you select technology then please select any one feild"
+                            valid=false;
+                        }
+                    }else if(b_l.checked == true || m_l.checked == true || e_l.checked == true){
+                        laravel.checked = true;
+                    }
+                }
+
+                if(x.name == "oracle"){
+                    b_o = document.getElementById("b_o");
+                    m_o = document.getElementById("m_o");
+                    e_o = document.getElementById("e_o");
+                    if(oracle.checked == true){
+                        if(b_o.checked == false && m_o.checked == false && e_o.checked == false){
+                            techmsg.innerHTML = "If you select technology then please select any one feild"
+                            valid=false;
+                        }
+                    }else if(b_o.checked == true || m_o.checked == true || e_o.checked == true){
+                        oracle.checked = true;
+                    }
+                }
+                
+            
                 if (x.name == "notice") {
                     notice_p = document.getElementById("notice_p");
                     if (x.value == "") {
@@ -667,19 +761,20 @@
                     if (x.value == "") {
                         e_ctc.innerHTML = "Required!"; valid = false;
                     }
-
+                    else if (!/^[0-9 .]*$/.test(x.value)) {
+                        e_ctc.innerHTML = "Enter valid ctc  "; valid = false;
+                    }
                 }
 
-                // if (x.name == "currentctc") {
-                //     c_ctc = document.getElementById("c_ctc");
-                //     c_ctc.innerHTML = "(ex: 2 LPA)"
-                //     if (x.value == "") {
-                //         c_ctc.innerHTML = "Required!"; valid = false;
-                //     }
-                //     else if (!/^[A-Za-z0-9 .]*$/.test(x.value)) {
-                //         c_ctc.innerHTML = "ex: 2 LPA"; valid = false;
-                //     }
-                // }
+                if (x.name == "currentctc") {
+                    c_ctc = document.getElementById("c_ctc");
+                    if (x.value == "") {
+                        c_ctc.innerHTML = "Required!"; valid = false;
+                    }
+                    else if (!/^[0-9 .]*$/.test(x.value)) {
+                        c_ctc.innerHTML = "Enter valid ctc"; valid = false;
+                    }
+                }
             }
             console.log(valid);
             return valid;
