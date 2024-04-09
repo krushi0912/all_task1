@@ -103,7 +103,8 @@
                             <option value="master" <%=result2[i].cource==="Master" ? 'selected' :''%>>Master</option>
                         </select>
                         <label for="board" style="margin-left: 40px;">Board/University</label>
-                        <input type="text" name="board[]" id="board" value="<%=result2[i].board%>"><br><br>
+                        <input type="text" name="board[]" id="board" value="<%=result2[i].board%>">
+                        <span id="boardmsg"></span><br><br>
                         <label for="passingyear" style="margin-left: 40px;">Passing Year </label>
                         <input type="text" name="passingyear[]" id="passingyear" value="<%=result2[i].passing_year%>"
                             placeholder="2000">
@@ -148,7 +149,7 @@
         <div class="tab languages">
             <h3>Languages You known</h3>
             <table>
-                <span id="langmsg"></span> 
+                <span id="langmsg"></span>
                 <%if(hindi.length!=0){%>
                     <tr>
                         <td><input type="hidden" name="lang_id[]" value="<%=hindi.length!=0 && hindi[0].id%>"></td>
@@ -679,6 +680,15 @@
                         valid = false;
                     }
                 }
+                if (currenttab == 1) {
+                    if (x.name == "board[]") {
+                        boardmsg = document.getElementById("boardmsg");
+                        if (x.value == "") {
+                            boardmsg.innerHTML = "Requied!";
+                            valid = false;
+                        }
+                    }
+                }
 
                 if (currenttab == 3) {
                     langmsg = document.getElementById("langmsg");
@@ -811,24 +821,28 @@
         }
 
         async function submitdata() {
-            let formdata = document.getElementById("regForm");
-            let data = new FormData(formdata);
-            const params = new URLSearchParams(data);
-            const jobdata = await new Response(params).text();
-            console.log(typeof (jobdata));
+            if (!validateform()) {
+                return false;
+            } else {
 
-            console.log("Insert data!");
+                let formdata = document.getElementById("regForm");
+                let data = new FormData(formdata);
+                const params = new URLSearchParams(data);
+                const jobdata = await new Response(params).text();
+                console.log(typeof (jobdata));
 
-            let data2 = await fetch("http://localhost:9815/ajax_crud/ajax_submit", {
-                method: "POST",
-                headers: {
-                    'Content-type': 'application/x-www-form-urlencoded'
-                },
-                body: jobdata
-            })
-            let result = await data2.json();
-            document.getElementById("msg").innerHTML = result.msg + `<a href="/ajax_crud/listdata">Update</a>`;
+                console.log("Insert data!");
 
+                let data2 = await fetch("http://localhost:9815/ajax_crud/ajax_submit", {
+                    method: "POST",
+                    headers: {
+                        'Content-type': 'application/x-www-form-urlencoded'
+                    },
+                    body: jobdata
+                })
+                let result = await data2.json();
+                document.getElementById("msg").innerHTML = result.msg + `<a href="/ajax_crud/listdata">Update</a>`;
+            }
         }
 
         async function updatedata() {
